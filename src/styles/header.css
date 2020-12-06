@@ -1,0 +1,197 @@
+@import '../styles/utilities.css';
+
+* {
+    transition: 0.2s ease-in-out;
+}
+.header {
+  background-color: #fff;
+  position: relative;
+  margin: 0 auto;
+}
+
+.header-navbar {
+    display: flex;
+    align-items: center;
+}
+
+.header-navbar .logo {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+}
+
+
+.header-navbar .logo i:hover {
+    cursor: pointer;
+    opacity: 1;
+}
+
+.header-navbar .logo span {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.header-navbar ul {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    padding: 10px;
+}
+
+@media screen and (max-width: 1000px) {
+  .header-navbar ul {
+    display: none;
+  }
+}
+
+
+
+.header-navbar ul li {
+    list-style: none;
+    text-align: center;
+    padding: 0 20px;
+
+}
+
+.header-navbar ul li a {
+    color: #000;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px 0;
+    text-align: center;
+    position: relative;
+    z-index: 0;
+    cursor: pointer;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.header-navbar ul li:hover {
+    cursor: pointer;
+}
+
+div.topBotomBordersOut a:before,
+div.topBotomBordersOut a:after
+{
+    position: absolute;
+    left: 0px;
+    width: 100%;
+    height: 2px;
+    background: rgb(0, 0, 0);
+    content: "";
+    opacity: 0;
+    transition: all 0.3s;
+}
+
+div.topBotomBordersOut a:before
+{
+    top: 0px;
+    transform: translateY(10px);
+}
+
+div.topBotomBordersOut a:after
+{
+    bottom: 0px;
+    transform: translateY(-10px);
+}
+
+div.topBotomBordersOut a:hover:before, div.topBotomBordersOut a:hover:after
+{
+    opacity: 1;
+    transform: translateY(0px);
+}
+
+.header .header-text {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    justify-content: flex-end;
+    padding: 0 20px;
+    animation: Fade 3s forwards;
+
+}
+
+.header .header-text .logo-name {
+  font-family: 'Caveat', cursive;
+}
+
+.header .header-text .author-name {
+  font-family: 'Caveat', cursive;
+  font-size: 22px;
+  font-weight: lighter;
+
+}
+
+
+@keyframes Fade {
+    from {
+        opacity: 0;
+    } to {
+        opacity: 1;
+    }
+}
+
+.header .header-text h3 {
+    width: 1000px;
+    line-height: 40px;
+    font-size: 48px;
+    line-height: 1.5em;
+    text-transform: uppercase;
+    color: rgb(0, 0, 0);
+}
+
+/* .header .header-sub-text {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 100%;
+  left: 50%;
+}
+
+.header .header-sub-text h4 {
+  text-align: center;
+  direction: rtl;
+  font-size: 30px;
+  font-weight: lighter;
+  font-family: 'Arimo', sans-serif;
+} */
+.burger-menu {
+  display: none;
+  flex-direction: column;
+  padding: 20px;
+  align-items: center;
+  
+}
+.menu-line {
+  position: relative;
+  height: 3px;
+  width: 30px;
+  border-radius: 4px;
+  border: none;
+  background-color: rgb(95, 73, 73);
+  margin-top: 5px;
+  cursor: pointer;
+  right: 0;
+}
+
+
+
+
+
+
+/* repsonsive settings for nav */
+
+@media screen and (max-width: 1050px) {
+    .burger-menu {
+      display: flex;
+    }
+
+    .topBotomBordersOut {
+      display: none;
+    }
+    .header-navbar .logo span  {
+      font-size: 20px;
+    }
+    
+}
