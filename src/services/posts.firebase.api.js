@@ -1,5 +1,4 @@
 import db from '../firebase';
-import { posts } from '../store/reducers/posts';
 
 export const setPosts = new Promise ((resolve, reject) => {
     db.collection('posts').onSnapshot(snapshop => {
@@ -7,13 +6,3 @@ export const setPosts = new Promise ((resolve, reject) => {
     resolve(posts);
   }) 
 })
- 
-
-  // db.collection('posts').onSnapshot(snapshot => {
-  // const posts =  snapshot.docs.map(doc => doc.data())
-  // console.log(posts);
-  // })
-  
-
- 
-   

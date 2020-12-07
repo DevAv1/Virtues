@@ -13,8 +13,7 @@ export const Posts = () => {
 
   useEffect(() => {
     dispatch(getPostsAction());
-  }, [])
-
+  }, [getPostsAction])
 
   return (
     <div className="posts">
@@ -33,7 +32,7 @@ export const Posts = () => {
           {
             posts.map((item) => {
               return (
-                <div className="item">
+                <div className="item" key={item.title}>
                   <a href="https://webdesign.tutsplus.com/articles/how-to-conduct-remote-usability-testing--cms-27045" className="card">
                     <div className="thumb" style={{backgroundImage: "url(https://image.freepik.com/free-vector/nice-spa-background-flat-design_23-2147789551.jpg)" }}></div>
                     <article>

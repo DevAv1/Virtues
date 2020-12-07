@@ -1,7 +1,7 @@
-import { GET_POSTS } from '../actions/actions.types';
+import { GET_POSTS, CREATE_POST } from '../actions/actions.types';
 
 const initialState = {
-  items: []
+  items: {}
 }
 
 export const posts = (state = initialState, action) => {
@@ -11,6 +11,15 @@ export const posts = (state = initialState, action) => {
         ...state,
         items: action.posts
       }
+    case CREATE_POST : {
+      return {
+        ...state,
+        items: {
+          ...state.items,
+          items: action.newPost
+        }
+      }
+    }
     default:
       return state;
   }
