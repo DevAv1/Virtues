@@ -9,22 +9,10 @@ import { Posts } from '../components/Posts';
 import { 
   BrowserRouter as Router,
   Switch,
-  Route,
 } from "react-router-dom";
 
 
 export const App = () => {
-  // const [ posts, setPosts ] = useState([])
-
-  // useEffect(() => {
-  //   db.collection('posts').onSnapshot(snapshot => {
-  //      setPosts(snapshot.docs.map(doc => doc.data()))
-  //   })
-   
-  // }, [])
-
-  // console.log(posts)
-
   // db.collection('posts').add({
   //   // here I need to pass the same structure
   //   title: title,
@@ -35,13 +23,11 @@ export const App = () => {
     <Router>
       <div className="App">
         <Header />
-          <Switch>
-            <Route exact path="/admin" component={Admin}>
-              <Admin/>
-            </Route>
-            {/* <Beauty /> */}
+          <Switch>  
+            <Admin exact path="/admin" component={Admin}/>
+            <Posts />
+
           </Switch>
-          <Posts />
           <Footer />
       </div>
     </Router>

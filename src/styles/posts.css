@@ -93,6 +93,15 @@ header {
   grid-template-columns: 1fr;
   grid-template-rows: auto;
   grid-gap: 20px;
+  animation: bandAnimation 1s ease-in-out;
+}
+
+@keyframes bandAnimation {
+  from {
+    opacity: 0;
+  } to {
+    opacity: 1;
+  }
 }
 @media (min-width: 30em) {
   .band {

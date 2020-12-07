@@ -1,0 +1,9 @@
+.admin {
+  height: 100vh;
+}
+.admin_header {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
