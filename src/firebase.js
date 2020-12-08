@@ -12,7 +12,7 @@ const firebaseApp = firebase.initializeApp ({
 });
 
 const db = firebaseApp.firestore();
-const storage = firebase.storage();
+export const storage = firebase.storage();
 
 
 export default db;

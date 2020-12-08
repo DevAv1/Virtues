@@ -8,22 +8,18 @@ import {
 const Header = () => {
     return (
         <div className="header">
-          <div className="header-image">
-            <img src="" alt=""/>
-          </div>
             <div className="header-navbar ">
                 <div className="logo">
-                    <Link to="/"><span className="logo-name">VIRTUES</span></Link>
-                    {/* <i class="fab fa-instagram"></i> */}
+                  <Link to="/"><span className="logo-name">VIRTUES</span></Link>
                 </div>
                 <div className="topBotomBordersOut">
                   <ul>
-                      <li><Link to="/admin">ADMIN</Link></li>
-                      <li><a href="#">contact</a></li>
-                      <li><a href="#">about</a></li>
-                      <li><a href="#">Active</a></li>
-                      <li><a href="#">Mindfulness</a></li>
-                      <li><a href="#">Beauty</a></li>
+                    <li><Link to="/admin">ADMIN</Link></li>
+                    <li><Link to="/">contact</Link></li>
+                    <li><Link to="/">life</Link></li>
+                    <li><Link to="/">food</Link></li>
+                    <li><Link to="/">body & soul</Link></li>
+                    <li><Link to="/">Beauty</Link></li>
                   </ul>
                 </div>
                 <div className="burger-menu">
@@ -31,14 +27,7 @@ const Header = () => {
                   <div className="menu-line"></div>
                   <div className="menu-line"></div>
                 </div>
-              
             </div>
-            
-            {/* <div className="header-sub-text">
-                <h4>
-                  פה יהיה סאב טקסט עם הסבר על וירטוס ומה המטרה שלו, המשפט יהיה לא ארוך מדי וינסה לתמצץ את תכליט הבלוג בצורה הכי יפה ואטרקטיבית.
-                </h4>
-            </div> */}
         </div>
     )
 }

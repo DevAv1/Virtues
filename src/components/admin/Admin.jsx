@@ -1,6 +1,6 @@
 import React, { useState, useEffect} from 'react';
 import '../../styles/admin.css';
-
+import { AdminPosts } from './AdminPosts';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPostsAction, createPostAction } from '../../store/actions/posts.actions';
 import { getPostsSelector } from '../../store/selectors';
@@ -20,13 +20,11 @@ import {
 
 const PostDialog = ({
   open,
-  setOpen,
   handleClickOpen,
   handleClose,
   handleInputChange,
   handleSubmit,
   newPost,
-  setNewPost
   }) => {
   
   return (
@@ -97,7 +95,7 @@ const PostDialog = ({
 
 const Admin = () => {
   const [open, setOpen] = useState(false);
-  const dispatch = useDispatch(getPostsSelector);
+  const dispatch = useDispatch();
   const allPosts = useSelector(getPostsSelector);
 
   const [ newPost, setNewPost ] = useState({
@@ -137,22 +135,19 @@ const Admin = () => {
         content: e.target.value
       })
     }
-    console.log(newPost);
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(createPostAction(newPost))
+    setNewPost('')
     handleClose();
   }
 
-
   useEffect(() => {
     dispatch(getPostsAction())
-  }, [newPost])
-  
+  }, [])  
 
- 
   return (
     <div className="admin">
       <div className="admin_header">
@@ -162,6 +157,7 @@ const Admin = () => {
       <div className="admin-toolbar">
         <PostDialog open={open} setOpen={setOpen} handleClickOpen={handleClickOpen} handleClose={handleClose} handleInputChange={handleInputChange} handleSubmit={handleSubmit} newPost={newPost} setNewPost={setNewPost}/>
       </div>
+      <AdminPosts allPosts={allPosts}/>
     </div>
   )
 }

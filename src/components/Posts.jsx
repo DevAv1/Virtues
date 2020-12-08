@@ -7,13 +7,14 @@ import { getPostsSelector } from '../store/selectors';
 import { LinearProgress } from '@material-ui/core';
  
 export const Posts = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch(); 
   const posts = useSelector(getPostsSelector)
-  console.log(posts);
 
   useEffect(() => {
     dispatch(getPostsAction());
-  }, [getPostsAction])
+  }, [])
+
+  console.log(posts);
 
   return (
     <div className="posts">
@@ -46,8 +47,11 @@ export const Posts = () => {
           }
           </div>
           :
-          <LinearProgress color="secondary" />
-
+          <div className="progression">
+            <LinearProgress color="secondary" className="progress-bar"/>
+            <h1>Loading feed please wait...</h1>
+          </div>
+          
       }
       
   </div>

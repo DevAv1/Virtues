@@ -3,15 +3,13 @@ import {
   CREATE_POST
 } from '../actions/actions.types';
 
-import { setPosts } from '../../services/posts.firebase.api';
-import { createPost } from '../../services/createPost.firebase.api'
-
-
+import { setPosts, createPost } from '../../services/posts.firebase.api';
+import db from '../../firebase';
 
 export const getPostsAction = () => {
   return async (dispatch) => {
     try {
-      const posts = await setPosts;
+      const posts = await setPosts();
       dispatch({
         type: GET_POSTS,
         posts
@@ -25,7 +23,7 @@ export const getPostsAction = () => {
 export const createPostAction = (post) => {
   return async (dispatch) => {
     try {
-      const newPost = createPost(post); 
+      const newPost = await createPost(post);
       dispatch({
         type: CREATE_POST,
         post: newPost
