@@ -43,7 +43,7 @@ export const AdminPosts = ({ allPosts }) => {
                   component="img"
                   alt="POST IMAGE"
                   height="140"
-                  image='https://firebasestorage.googleapis.com/v0/b/virtues-4408e.appspot.com/o/images%2Fsmile_smiley_neon_146916_1920x1080.jpg?alt=media&token=5c94e334-22aa-4d9f-9c4f-e26b4e5ab23b'
+                  image={item.image}
                   title="Contemplative Reptile"
                 />
                 <CardContent>

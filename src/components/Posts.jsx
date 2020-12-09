@@ -15,35 +15,20 @@ export const Posts = () => {
   }, [])
 
   // console.log(posts);
-
   return (
     <div className="posts">
       {posts.length > 0 ?
         <div className="band">
-          <div className="item-1 main-item">
-              <Link to={{
-                    pathname:"/post",
-                    post: posts[0]
-                  }} className="card">
-                <div className="thumb" style={{backgroundImage: "url(https://image.freepik.com/free-vector/nice-spa-background-flat-design_23-2147789551.jpg)" }}></div>
-                <article>
-                  <h1>{posts[0].title}</h1>
-                  <h3>{posts[0].catagory}</h3>
-                  <br></br>
-                  <p>{posts[0].description}</p>
-                  <span>{posts[0].timestamp.toDate().toString()}</span>
-                </article>
-              </Link>
-          </div>
-          {posts.length > 1 &&
-            posts.map((item) => {
+         { posts.map((item, index) => {
               return (
-                <div className="item" key={item.title}>
+                <div className={`${!index && "item-1" }`} key={item.title} onClick={()=>{
+                  //dispatch()...
+                }}>
                   <Link to={{
                     pathname:"/post",
                     post: item
                   }} params={item} className="card">
-                    <div className="thumb" style={{backgroundImage: "url(https://image.freepik.com/free-vector/nice-spa-background-flat-design_23-2147789551.jpg)" }}></div>
+                    <div className="thumb" style={{backgroundImage: `url(${item.image})`}}></div>
                     <article>
                       <h1>{item.title}</h1>
                       <h3>{item.catagory}</h3>

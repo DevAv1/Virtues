@@ -23,9 +23,10 @@ const PostDialog = ({
   open,
   handleClickOpen,
   handleClose,
-  handleInputChange,
   handleSubmit,
   newPost,
+  setNewPost,
+  setImage,
   handleImageChange,
   handleUpload
   }) => {
@@ -48,7 +49,7 @@ const PostDialog = ({
             id="demo-simple-select"
             name="catagory"
             value={newPost.catagory}
-            onChange={handleInputChange}
+            onChange={(e) => {setNewPost({...newPost, catagory: e.target.value})}}
           >
             <MenuItem value='beauty'>BEAUTY</MenuItem>
             <MenuItem value='body & soul'>BODY & SOUL</MenuItem>
@@ -63,7 +64,7 @@ const PostDialog = ({
             label="Post Title"
             type="text"
             fullWidth
-            onChange={handleInputChange}
+            onChange={(e) => setNewPost({...newPost, title: e.target.value })}
           />
           <TextField
             autoFocus
@@ -72,7 +73,7 @@ const PostDialog = ({
             label="description"
             type="text"
             fullWidth
-            onChange={handleInputChange}
+            onChange={(e) => setNewPost({...newPost, description: e.target.value })}
           />
           <TextField
             autoFocus
@@ -81,7 +82,7 @@ const PostDialog = ({
             label="post content"
             type="text"
             fullWidth
-            onChange={handleInputChange}
+            onChange={(e) => setNewPost({...newPost, content: e.target.value })}
           />
             <TextField
             autoFocus
@@ -90,7 +91,7 @@ const PostDialog = ({
             label="image"
             type="file"
             fullWidth
-            onChange={handleImageChange}
+            onChange={(e) => setImage(e.target.files[0])}
           />
         </DialogContent>
         <DialogActions>
@@ -108,8 +109,8 @@ const PostDialog = ({
 }
 
 const Admin = () => {
-  const [open, setOpen] = useState(false)
-  const [ image, setImage ] = useState(null)
+  const [ open, setOpen ] = useState(false);
+  const [ image, setImage ] = useState(null);
   const [ urlLocal, setUrl ] = useState('')
   const [ newPost, setNewPost ] = useState({
     imageURL: '',
@@ -118,6 +119,7 @@ const Admin = () => {
     description: '',
     content: ''
   });
+  debugger;
 
   const dispatch = useDispatch();
   const allPosts = useSelector(getPostsSelector);
@@ -134,30 +136,6 @@ const Admin = () => {
     setOpen(false);
   };
 
-  const handleInputChange = (e) => {
-    if (e.target.name === 'catagory') {
-      setNewPost({
-        ...newPost,
-        catagory: e.target.value
-      })
-    } else if (e.target.id === 'title') {
-      setNewPost({
-        ...newPost, 
-        title: e.target.value
-      })
-    } else if (e.target.id === 'description') {
-      setNewPost({
-        ...newPost,
-        description: e.target.value
-      })
-    } else {
-      setNewPost({
-        ...newPost,
-        content: e.target.value
-      })
-    }
-  }
-
   const handleSubmit = (e) => {
     e.preventDefault();
     const uploadTask = storage.ref(`images/${image.name}`).put(image);
@@ -170,17 +148,16 @@ const Admin = () => {
       },
       () => {
         uploadTask.snapshot.ref.getDownloadURL().then((url) => {
-          setNewPost({
-            ...newPost,
-            imageURL: url
-          })
+          setUrl(url);
+          let uploadedPost = Object.assign(newPost, {imageURL:url})
+          setNewPost(uploadedPost);
+          dispatch(createPostAction(uploadedPost))
           console.log('File available at','image const', url);
+          setNewPost({});
+          handleClose();
         })
       }
     )
-    dispatch(createPostAction(newPost))
-    setNewPost({})
-    handleClose();
   }
 
   const handleImageChange = (e) => {
@@ -197,7 +174,7 @@ const Admin = () => {
         <p style={{fontWeight:"bolder"}}>Lets manage...</p>
       </div>
       <div className="admin-toolbar">
-        <PostDialog handleImageChange={handleImageChange} open={open} setOpen={setOpen} handleClickOpen={handleClickOpen} handleClose={handleClose} handleInputChange={handleInputChange} handleSubmit={handleSubmit} newPost={newPost} setNewPost={setNewPost}/>
+        <PostDialog handleImageChange={handleImageChange} open={open} setOpen={setOpen} handleClickOpen={handleClickOpen} handleClose={handleClose} handleSubmit={handleSubmit} newPost={newPost} setNewPost={setNewPost} setImage={setImage}/>
       </div>
       <AdminPosts allPosts={allPosts}/>
     </div>
