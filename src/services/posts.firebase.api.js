@@ -26,12 +26,13 @@ return post.id
 
 
 
-export const createPost = async ({catagory, title, description, content}) => {
+export const createPost = async ({catagory, title, description, content, imageURL}) => {
     const res = await db.collection('posts').add({
     catagory: catagory,
     title: title,
     description: description,
     content: content,
+    image: imageURL,
     timestamp: firebase.firestore.FieldValue.serverTimestamp()
   }) 
   if(res) {

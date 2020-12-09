@@ -20,6 +20,12 @@
   font-size: 100px;
 }
 
+@media screen and (max-width: 1200px) {
+  .logo-name h1 {
+    font-size: 65px;
+  }
+}
+
 .footer-wrapper .catagories ul { 
   display: flex;
   flex-direction: row;

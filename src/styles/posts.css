@@ -128,3 +128,32 @@ header {
   }
 }
 
+.virtues-siders-wrapper {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  width: 100%;
+  top: 50%;
+}
+
+@media screen and (max-width: 1200px) {
+  .virtues-siders-wrapper {
+    display: none;
+  }
+}
+
+.virtues-siders-wrapper .virtues-siders {
+  transform: rotate(90deg);
+  top: 50%;
+  height: 100%;
+
+}
+
+.virtues-siders-wrapper .virtues-siders h1 {
+  font-size: 90px;
+  font-weight: bold;
+  opacity: 0.1;
+}
+
+
+

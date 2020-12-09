@@ -1,11 +1,10 @@
 import React from 'react'
 import '../App.css';
-// Import Components
 import Admin from './admin/Admin'
 import Header from './Header'
 import Footer from './Footer';
 import { Posts } from '../components/Posts';
-
+import { Post } from '../components/Post';
 import { 
   BrowserRouter as Router,
   Switch,
@@ -19,26 +18,11 @@ export const App = () => {
         <Header />
           <Switch>  
             <Admin exact path="/admin" component={Admin} />
+            <Post expact path="/post" component={Post} />
             <Posts />
           </Switch>
           <Footer />
       </div>
     </Router>
-    
   );
 }
-
-// <Router>
-// <div className="App">
-//   <Header />
-//   <div className="app-wrapper">
-//     <Switch>
-//       <Route exact path="/admin" component={Admin}>
-//         <Admin/>
-//       </Route>
-//       <Beauty />
-//     </Switch>
-//   </div>
-  
-// </div>
-// </Router>

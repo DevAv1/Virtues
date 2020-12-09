@@ -108,8 +108,8 @@ const PostDialog = ({
 }
 
 const Admin = () => {
-  const [open, setOpen] = useState(false);
-  const [ image, setImage ] = useState(null);
+  const [open, setOpen] = useState(false)
+  const [ image, setImage ] = useState(null)
   const [ urlLocal, setUrl ] = useState('')
   const [ newPost, setNewPost ] = useState({
     imageURL: '',
@@ -170,17 +170,16 @@ const Admin = () => {
       },
       () => {
         uploadTask.snapshot.ref.getDownloadURL().then((url) => {
-          setUrl(url)
           setNewPost({
             ...newPost,
-            imageURL: urlLocal
+            imageURL: url
           })
           console.log('File available at','image const', url);
         })
       }
     )
     dispatch(createPostAction(newPost))
-    setNewPost('')
+    setNewPost({})
     handleClose();
   }
 
