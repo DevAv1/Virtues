@@ -2,11 +2,11 @@
   display: grid;
   width: 80%;
   margin: 50px auto;
-  grid-template-columns: auto auto auto auto;
+  grid-template-columns: auto auto auto;
   grid-gap: 10px;
   padding: 10px;
 }
 
-.admin-posts .card {
-  margin: 20px;
+#textare-editor {
+  direction: rtl;
 }

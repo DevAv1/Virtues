@@ -10,6 +10,22 @@ export const setPosts = () => {
   })
 }
 
+
+export const deletePost = async (post) => {
+  db.collection("posts").doc(post.id).delete().then(function() {
+    console.log("Document successfully deleted!");
+}).catch(function(error) {
+    console.error("Error removing document: ", error);
+});db.collection("cities").doc("DC").delete().then(function() {
+  console.log("Document successfully deleted!");
+}).catch(function(error) {
+  console.error("Error removing document: ", error);
+});
+return post.id
+}
+
+
+
 export const createPost = async ({catagory, title, description, content}) => {
     const res = await db.collection('posts').add({
     catagory: catagory,

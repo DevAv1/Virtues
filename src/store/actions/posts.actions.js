@@ -1,10 +1,10 @@
 import { 
   GET_POSTS,
-  CREATE_POST
+  CREATE_POST,
+  DELETE_POST
 } from '../actions/actions.types';
 
-import { setPosts, createPost } from '../../services/posts.firebase.api';
-import db from '../../firebase';
+import { setPosts, createPost, deletePost } from '../../services/posts.firebase.api';
 
 export const getPostsAction = () => {
   return async (dispatch) => {
@@ -30,6 +30,20 @@ export const createPostAction = (post) => {
       })
     } catch(err) {
       console.error(err)
+    }
+  }
+}
+
+export const deletePostAction = (post) => {
+  return async (dispatch) => {
+    try {
+      const id = await deletePost(post)
+      dispatch({
+        type: DELETE_POST,
+        id: id
+      })
+    } catch(err) {
+      console.err(err)
     }
   }
 }

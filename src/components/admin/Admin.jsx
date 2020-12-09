@@ -4,6 +4,7 @@ import { AdminPosts } from './AdminPosts';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPostsAction, createPostAction } from '../../store/actions/posts.actions';
 import { getPostsSelector } from '../../store/selectors';
+import { storage } from '../../firebase';
 
 import {
   Button,
@@ -25,6 +26,8 @@ const PostDialog = ({
   handleInputChange,
   handleSubmit,
   newPost,
+  handleImageChange,
+  handleUpload
   }) => {
   
   return (
@@ -47,9 +50,11 @@ const PostDialog = ({
             value={newPost.catagory}
             onChange={handleInputChange}
           >
-            <MenuItem value='Beauty'>Beauty</MenuItem>
-            <MenuItem value='BODY & SOUL'>BODY & SOUL</MenuItem>
-            <MenuItem value='FOOD'>FOOD</MenuItem>
+            <MenuItem value='beauty'>BEAUTY</MenuItem>
+            <MenuItem value='body & soul'>BODY & SOUL</MenuItem>
+            <MenuItem value='food'>FOOD</MenuItem>
+            <MenuItem value='life'>LIFE</MenuItem>
+
           </Select>
           <TextField
             autoFocus
@@ -78,6 +83,15 @@ const PostDialog = ({
             fullWidth
             onChange={handleInputChange}
           />
+            <TextField
+            autoFocus
+            margin="dense"
+            id="image"
+            label="image"
+            type="file"
+            fullWidth
+            onChange={handleImageChange}
+          />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
@@ -95,15 +109,22 @@ const PostDialog = ({
 
 const Admin = () => {
   const [open, setOpen] = useState(false);
-  const dispatch = useDispatch();
-  const allPosts = useSelector(getPostsSelector);
-
+  const [ image, setImage ] = useState(null);
+  const [ urlLocal, setUrl ] = useState('')
   const [ newPost, setNewPost ] = useState({
+    imageURL: '',
     catagory: '',
     title: '',
     description: '',
     content: ''
-  })
+  });
+
+  const dispatch = useDispatch();
+  const allPosts = useSelector(getPostsSelector);
+
+  useEffect(() => {
+    dispatch(getPostsAction())
+  }, [])  
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -139,14 +160,36 @@ const Admin = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const uploadTask = storage.ref(`images/${image.name}`).put(image);
+    uploadTask.on(
+      'state_changed', (snapshot) => {
+        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log('Upload is ' + progress + '% done');
+      }, (error) => {
+        console.log(error)
+      },
+      () => {
+        uploadTask.snapshot.ref.getDownloadURL().then((url) => {
+          setUrl(url)
+          setNewPost({
+            ...newPost,
+            imageURL: urlLocal
+          })
+          console.log('File available at','image const', url);
+        })
+      }
+    )
     dispatch(createPostAction(newPost))
     setNewPost('')
     handleClose();
   }
 
-  useEffect(() => {
-    dispatch(getPostsAction())
-  }, [])  
+  const handleImageChange = (e) => {
+    if (e.target.files[0]) {
+      setImage(e.target.files[0])
+    }
+  }
+
 
   return (
     <div className="admin">
@@ -155,7 +198,7 @@ const Admin = () => {
         <p style={{fontWeight:"bolder"}}>Lets manage...</p>
       </div>
       <div className="admin-toolbar">
-        <PostDialog open={open} setOpen={setOpen} handleClickOpen={handleClickOpen} handleClose={handleClose} handleInputChange={handleInputChange} handleSubmit={handleSubmit} newPost={newPost} setNewPost={setNewPost}/>
+        <PostDialog handleImageChange={handleImageChange} open={open} setOpen={setOpen} handleClickOpen={handleClickOpen} handleClose={handleClose} handleInputChange={handleInputChange} handleSubmit={handleSubmit} newPost={newPost} setNewPost={setNewPost}/>
       </div>
       <AdminPosts allPosts={allPosts}/>
     </div>
