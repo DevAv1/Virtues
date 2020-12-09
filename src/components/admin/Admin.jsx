@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getPostsAction, createPostAction } from '../../store/actions/posts.actions';
 import { getPostsSelector } from '../../store/selectors';
 import { storage } from '../../firebase';
+import { PostContentForm } from './PostContentForm';
 
 import {
   Button,
@@ -19,94 +20,92 @@ import {
   InputLabel,
 } from '@material-ui/core'
 
-const PostDialog = ({
-  open,
-  handleClickOpen,
-  handleClose,
-  handleSubmit,
-  newPost,
-  setNewPost,
-  setImage,
-  handleImageChange,
-  handleUpload
-  }) => {
+// const PostDialog = ({
+//   open,
+//   handleClickOpen,
+//   handleClose,
+//   handleSubmit,
+//   newPost,
+//   setNewPost,
+//   setImage,
+//   }) => {
   
-  return (
-    <div>
-       <Button variant="contained" color="secondary" onClick={handleClickOpen}>
-        Create new Post
-      </Button>
-      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">New Post</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            To create a post, please fillout all the inputs according to your needs and then click SUBMIT and see the magic.
-          </DialogContentText>
-          <InputLabel id="demo-simple-select-label">Catagory</InputLabel>
-          <Select
-            style={{width: "100%"}}
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            name="catagory"
-            value={newPost.catagory}
-            onChange={(e) => {setNewPost({...newPost, catagory: e.target.value})}}
-          >
-            <MenuItem value='beauty'>BEAUTY</MenuItem>
-            <MenuItem value='body & soul'>BODY & SOUL</MenuItem>
-            <MenuItem value='food'>FOOD</MenuItem>
-            <MenuItem value='life'>LIFE</MenuItem>
+//   return (
+//     <div>
+//        <Button variant="contained" color="secondary" onClick={handleClickOpen}>
+//         Create new Post
+//       </Button>
+//       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+//         <DialogTitle id="form-dialog-title">New Post</DialogTitle>
+//         <DialogContent>
+//           <DialogContentText>
+//             To create a post, please fillout all the inputs according to your needs and then click SUBMIT and see the magic.
+//           </DialogContentText>
+//           <InputLabel id="demo-simple-select-label">Catagory</InputLabel>
+//           <Select
+//             style={{width: "100%"}}
+//             labelId="demo-simple-select-label"
+//             id="demo-simple-select"
+//             name="catagory"
+//             value={newPost.catagory}
+//             onChange={(e) => {setNewPost({...newPost, catagory: e.target.value})}}
+//           >
+//             <MenuItem value='beauty'>BEAUTY</MenuItem>
+//             <MenuItem value='body & soul'>BODY & SOUL</MenuItem>
+//             <MenuItem value='food'>FOOD</MenuItem>
+//             <MenuItem value='life'>LIFE</MenuItem>
 
-          </Select>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="title"
-            label="Post Title"
-            type="text"
-            fullWidth
-            onChange={(e) => setNewPost({...newPost, title: e.target.value })}
-          />
-          <TextField
-            autoFocus
-            margin="dense"
-            id="description"
-            label="description"
-            type="text"
-            fullWidth
-            onChange={(e) => setNewPost({...newPost, description: e.target.value })}
-          />
-          <TextField
-            autoFocus
-            margin="dense"
-            id="content"
-            label="post content"
-            type="text"
-            fullWidth
-            onChange={(e) => setNewPost({...newPost, content: e.target.value })}
-          />
-            <TextField
-            autoFocus
-            margin="dense"
-            id="image"
-            label="image"
-            type="file"
-            fullWidth
-            onChange={(e) => setImage(e.target.files[0])}
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={handleSubmit} color="primary" type="submit">
-            SUBMIT POST
-          </Button>
-        </DialogActions>
-      </Dialog>
-    </div>
-  )
+//           </Select>
+//           <TextField
+//             autoFocus
+//             margin="dense"
+//             id="title"
+//             label="Post Title"
+//             type="text"
+//             fullWidth
+//             onChange={(e) => setNewPost({...newPost, title: e.target.value })}
+//           />
+//           <TextField
+//             autoFocus
+//             margin="dense"
+//             id="description"
+//             label="description"
+//             type="text"
+//             fullWidth
+//             onChange={(e) => setNewPost({...newPost, description: e.target.value })}
+//           />
+//           <TextField
+//             autoFocus
+//             margin="dense"
+//             id="content"
+//             label="post content"
+//             type="text"
+//             fullWidth
+//             onChange={(e) => setNewPost({...newPost, content: e.target.value })}
+//           />
+//             <TextField
+//             autoFocus
+//             margin="dense"
+//             id="image"
+//             label="image"
+//             type="file"
+//             fullWidth
+//             onChange={(e) => setImage(e.target.files[0])}
+//           />
+//         </DialogContent>
+//         <DialogActions>
+//           <Button onClick={handleClose} color="primary">
+//             Cancel
+//           </Button>
+//           <Button onClick={handleSubmit} color="primary" type="submit">
+//             SUBMIT POST
+//           </Button>
+//         </DialogActions>
+//       </Dialog>
+//     </div>
+//   )
 
-}
+// }
 
 const Admin = () => {
   const [ open, setOpen ] = useState(false);
@@ -119,7 +118,6 @@ const Admin = () => {
     description: '',
     content: ''
   });
-  debugger;
 
   const dispatch = useDispatch();
   const allPosts = useSelector(getPostsSelector);
@@ -136,35 +134,41 @@ const Admin = () => {
     setOpen(false);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const uploadTask = storage.ref(`images/${image.name}`).put(image);
-    uploadTask.on(
-      'state_changed', (snapshot) => {
-        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        console.log('Upload is ' + progress + '% done');
-      }, (error) => {
-        console.log(error)
-      },
-      () => {
-        uploadTask.snapshot.ref.getDownloadURL().then((url) => {
-          setUrl(url);
-          let uploadedPost = Object.assign(newPost, {imageURL:url})
-          setNewPost(uploadedPost);
-          dispatch(createPostAction(uploadedPost))
-          console.log('File available at','image const', url);
-          setNewPost({});
-          handleClose();
-        })
-      }
-    )
-  }
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   const uploadTask = storage.ref(`images/${image.name}`).put(image);
+  //   uploadTask.on(
+  //     'state_changed', (snapshot) => {
+  //       const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+  //       console.log('Upload is ' + progress + '% done');
+  //     }, (error) => {
+  //       console.log(error)
+  //     },
+  //     () => {
+  //       uploadTask.snapshot.ref.getDownloadURL().then((url) => {
+  //         setUrl(url);
+  //         let uploadedPost = Object.assign(newPost, {imageURL:url})
+  //         setNewPost(uploadedPost);
+  //         dispatch(createPostAction(uploadedPost))
+  //         console.log('File available at','image const', url);
+  //         setNewPost({
+  //           imageURL: '',
+  //           catagory: '',
+  //           title: '',
+  //           description: '',
+  //           content: ''
+  //         });
+  //         handleClose();
+  //       })
+  //     }
+  //   )
+  // }
 
-  const handleImageChange = (e) => {
-    if (e.target.files[0]) {
-      setImage(e.target.files[0])
-    }
-  }
+  // const handleImageChange = (e) => {
+  //   if (e.target.files[0]) {
+  //     setImage(e.target.files[0])
+  //   }
+  // }
 
 
   return (
@@ -174,9 +178,13 @@ const Admin = () => {
         <p style={{fontWeight:"bolder"}}>Lets manage...</p>
       </div>
       <div className="admin-toolbar">
-        <PostDialog handleImageChange={handleImageChange} open={open} setOpen={setOpen} handleClickOpen={handleClickOpen} handleClose={handleClose} handleSubmit={handleSubmit} newPost={newPost} setNewPost={setNewPost} setImage={setImage}/>
+        {/* <PostDialog handleImageChange={handleImageChange} open={open} setOpen={setOpen} handleClickOpen={handleClickOpen} handleClose={handleClose} handleSubmit={handleSubmit} newPost={newPost} setNewPost={setNewPost} setImage={setImage}/> */}
       </div>
       <AdminPosts allPosts={allPosts}/>
+      <div className="post-create-area">
+         <PostContentForm open={open} setOpen={setOpen} handleClickOpen={handleClickOpen} handleClose={handleClose} newPost={newPost} setNewPost={setNewPost} setImage={setImage}/>
+      </div>
+      
     </div>
   )
 }
