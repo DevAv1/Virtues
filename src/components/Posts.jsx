@@ -14,16 +14,14 @@ export const Posts = () => {
     dispatch(getPostsAction());
   }, [])
 
-  // console.log(posts);
+  console.log(posts);
   return (
     <div className="posts">
       {posts.length > 0 ?
         <div className="band">
          { posts.map((item, index) => {
               return (
-                <div className={`${!index && "item-1" }`} key={item.title} onClick={()=>{
-                  //dispatch()...
-                }}>
+                <div className={`${!index && "item-1" }`} key={item.title}>
                   <Link to={{
                     pathname:"/post",
                     post: item

@@ -2,23 +2,23 @@ import React, { useState, useEffect} from 'react';
 import '../../styles/admin.css';
 import { AdminPosts } from './AdminPosts';
 import { useDispatch, useSelector } from 'react-redux';
-import { getPostsAction, createPostAction } from '../../store/actions/posts.actions';
+import { getPostsAction } from '../../store/actions/posts.actions';
 import { getPostsSelector } from '../../store/selectors';
-import { storage } from '../../firebase';
+// import { storage } from '../../firebase';
 import { PostContentForm } from './PostContentForm';
 
-import {
-  Button,
-  TextField,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  Select,
-  MenuItem,
-  InputLabel,
-} from '@material-ui/core'
+// import {
+//   Button,
+//   TextField,
+//   Dialog,
+//   DialogActions,
+//   DialogContent,
+//   DialogContentText,
+//   DialogTitle,
+//   Select,
+//   MenuItem,
+//   InputLabel,
+// } from '@material-ui/core'
 
 // const PostDialog = ({
 //   open,
@@ -109,8 +109,6 @@ import {
 
 const Admin = () => {
   const [ open, setOpen ] = useState(false);
-  const [ image, setImage ] = useState(null);
-  const [ urlLocal, setUrl ] = useState('')
   const [ newPost, setNewPost ] = useState({
     imageURL: '',
     catagory: '',
@@ -177,12 +175,9 @@ const Admin = () => {
         <h1>Hi Limor,</h1>
         <p style={{fontWeight:"bolder"}}>Lets manage...</p>
       </div>
-      <div className="admin-toolbar">
-        {/* <PostDialog handleImageChange={handleImageChange} open={open} setOpen={setOpen} handleClickOpen={handleClickOpen} handleClose={handleClose} handleSubmit={handleSubmit} newPost={newPost} setNewPost={setNewPost} setImage={setImage}/> */}
-      </div>
       <AdminPosts allPosts={allPosts}/>
       <div className="post-create-area">
-         <PostContentForm open={open} setOpen={setOpen} handleClickOpen={handleClickOpen} handleClose={handleClose} newPost={newPost} setNewPost={setNewPost} setImage={setImage}/>
+         <PostContentForm open={open} setOpen={setOpen} handleClickOpen={handleClickOpen} handleClose={handleClose} newPost={newPost} setNewPost={setNewPost}/>
       </div>
       
     </div>

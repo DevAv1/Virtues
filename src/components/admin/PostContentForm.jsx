@@ -13,9 +13,8 @@ import {
   MenuItem,
 } from '@material-ui/core'
 
-export const PostContentForm = ({}) => {
+export const PostContentForm = () => {
 
-  const [ open, setOpen ] = useState(false);
   const [ image, setImage ] = useState(null);
   const [ newPost, setNewPost ] = useState({
     imageURL: '',
@@ -29,15 +28,7 @@ export const PostContentForm = ({}) => {
 
   useEffect(() => {
     dispatch(getPostsAction())
-  }, [])  
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
+  },[])  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -54,23 +45,10 @@ export const PostContentForm = ({}) => {
           let uploadedPost = Object.assign(newPost, {imageURL:url})
           setNewPost(uploadedPost);
           dispatch(createPostAction(uploadedPost))
-          console.log('File available at','image const', url);
-          setNewPost({
-            imageURL: '',
-            catagory: '',
-            title: '',
-            description: '',
-            content: ''
-          });          handleClose();
+          console.log('File available at','image const', url);          
         })
       }
     )
-  }
-
-  const handleImageChange = (e) => {
-    if (e.target.files[0]) {
-      setImage(e.target.files[0])
-    }
   }
 
   return (

@@ -1,6 +1,9 @@
 .form-container {
-  box-shadow: -5px 13px 9px -13px rgba(0,0,0,0.75);
-
+  width: 80%;
+  margin: 0 auto;
+  -webkit-box-shadow: 2px 5px 27px -10px rgba(0,0,0,0.75);
+  -moz-box-shadow: 2px 5px 27px -10px rgba(0,0,0,0.75);
+  box-shadow: 2px 5px 27px -10px rgba(0,0,0,0.75);
 }
 .post-form {
   width: 80%;
