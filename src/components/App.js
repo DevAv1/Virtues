@@ -11,7 +11,6 @@ import {
 } from "react-router-dom";
 
 export const App = () => {
-
   return (
     <Router>
       <div className="App">

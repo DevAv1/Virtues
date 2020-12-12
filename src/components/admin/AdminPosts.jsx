@@ -3,12 +3,9 @@ import '../../styles/adminPosts.css';
 import { deletePostAction } from '../../store/actions/posts.actions';
 import { useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
+import ReactHtmlParser from 'react-html-parser';
+
 import DeleteIcon from '@material-ui/icons/Delete';
-import { getPostsAction, createPostAction } from '../../store/actions/posts.actions';
-import { getPostsSelector } from '../../store/selectors';
-import { storage } from '../../firebase';
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import {
   Card,
   CardActionArea,
@@ -56,9 +53,9 @@ export const AdminPosts = ({ allPosts }) => {
                   <Typography variant="body2" color="textSecondary" component="p">
                     {item.description}
                   </Typography>
-                  {/* <Typography>
-                    {item.content}
-                  </Typography> */}
+                  <Typography className="timestamp">
+                  {item.timestamp.toDate().toString()}
+                 </Typography>
                 </CardContent>
               </CardActionArea>
               <CardActions>
@@ -66,9 +63,6 @@ export const AdminPosts = ({ allPosts }) => {
                 <Button size="small" color="primary">
                   <DeleteIcon onClick={() => handleDelete(item)}/>
                 </Button>
-                <Typography>
-                  {item.timestamp.toDate().toString()}
-                </Typography>
                 <Button size="small" color="primary">
                   Click to see post
                 </Button>

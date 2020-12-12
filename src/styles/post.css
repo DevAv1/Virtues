@@ -1,5 +1,6 @@
 .post {
   min-height: 100vh;
+  direction: rtl;
 }
 .post .post-header {
   display: flex;
@@ -21,12 +22,13 @@
   }
 }
 .post .post-image {
-  width: 80%;
-  margin: 20px auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .post-image > img {
-  max-width: 100%;
+  width: 100%;
 }
 
 .post .post-content {
@@ -46,16 +48,16 @@
 .post .post-content h3 {
   margin: 0 auto;
   padding: 20px 0px;
-  text-align: center;
+  text-align: right;
 }
 
 .post .post-content p {
-  font-size: 36px;
-  line-height: 1.5em;
+  font-size: 18px;
+  /* line-height: 1.5em; */
+  font-weight: lighter;
 }
 
 @media screen and (max-width: 1000px) {
   .post .post-content p {
-    font-size: 26px;
   }
 }

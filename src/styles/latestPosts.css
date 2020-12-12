@@ -1,0 +1,34 @@
+.latest-posts {
+  width: 80%;
+  margin: 25px auto;
+}
+
+
+.latest_header {
+  text-align: left;
+  font-size: 32px;
+  font-weight: lighter;
+  padding: 20px 0px;
+  text-transform: uppercase;
+}
+
+.latest_header > hr {
+  margin: 20px 0px;
+}
+
+.latest_posts_wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.latest_posts_posts {
+  display: flex;
+  flex-direction: row;
+  width: 70%;
+  margin: 0 auto;
+  justify-content: space-between;
+}
+
+.latest_posts_wrapper #card {
+  text-align: right;
+}

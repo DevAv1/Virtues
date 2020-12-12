@@ -5,7 +5,7 @@ import { getPostsAction } from '../store/actions/posts.actions';
 import { getPostsSelector } from '../store/selectors';
 import { LinearProgress } from '@material-ui/core';
 import { Link } from 'react-router-dom';
-
+import { LatestPosts } from '../components/LatestPosts'
 export const Posts = () => {
   const dispatch = useDispatch(); 
   const posts = useSelector(getPostsSelector)
@@ -14,14 +14,13 @@ export const Posts = () => {
     dispatch(getPostsAction());
   }, [])
 
-  console.log(posts);
   return (
     <div className="posts">
       {posts.length > 0 ?
         <div className="band">
          { posts.map((item, index) => {
               return (
-                <div className={`${!index && "item-1" }`} key={item.title}>
+                <div className={`${!index && "item-1" }`} key={item.title} data-aos="fade-right">
                   <Link to={{
                     pathname:"/post",
                     post: item
@@ -43,17 +42,18 @@ export const Posts = () => {
           <div className="progression">
             <LinearProgress color="secondary" className="progress-bar"/>
             <h1>Loading feed please wait...</h1>
-          </div>
-          
+          </div>  
       }
-      {/* <div className="virtues-siders-wrapper">
+      <LatestPosts posts={posts}/>
+
+      <div className="virtues-siders-wrapper">
         <div className="virtues-siders">
           <h1>VIRTUES</h1>
         </div>
         <div className="virtues-siders">
           <h1>VIRTUES</h1>
         </div>
-      </div>       */}
+      </div>      
   </div>
   )
 }

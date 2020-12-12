@@ -1,12 +1,27 @@
 .form-container {
   width: 80%;
   margin: 0 auto;
-  -webkit-box-shadow: 2px 5px 27px -10px rgba(0,0,0,0.75);
-  -moz-box-shadow: 2px 5px 27px -10px rgba(0,0,0,0.75);
-  box-shadow: 2px 5px 27px -10px rgba(0,0,0,0.75);
 }
-.post-form {
-  width: 80%;
+.form-container .post-form {
+  width: 100%;
+  text-align: right;
   margin: 0 auto;
-  padding: 20px;
+}
+
+.form-container > button {
+  display: none;
+}
+
+.form-container .input {
+  margin: 20px 0px;
+}
+
+.btns-group {
+  display: Flex;
+  padding-left: 10px;
+  padding-bottom: 10px;
+}
+
+.btns-group .btn {
+  margin-right: 20px;
 }

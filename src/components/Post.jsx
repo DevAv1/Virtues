@@ -1,8 +1,8 @@
 import React, { useEffect, useState} from 'react'
 import '../styles/post.css';
-import { useLocation, Link} from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { LinearProgress } from '@material-ui/core';
-import image from '../assets/backgrounds/stones.jpg'
+import ReactHtmlParser from 'react-html-parser';
 
 export const Post = () => {
   const location = useLocation();
@@ -20,12 +20,12 @@ export const Post = () => {
            <h1>{currentPost.catagory}</h1>
           </div>
           <div className="post-image">
-            <img src={image}/>
+            <img src={currentPost.image}/>
           </div>
           <div className="post-content">
             <h1>{currentPost.title}</h1>
             <h3>{currentPost.description}</h3>
-            <p>{currentPost.content}</p>
+            <p>{ReactHtmlParser(currentPost.content)}</p>
           </div>
         </div>
         :
