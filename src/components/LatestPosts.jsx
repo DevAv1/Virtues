@@ -23,12 +23,15 @@ export const LatestPosts = ({posts}) => {
   });
   const classes = useStyles();
 
+  const truncate = (str, n) => {
+    return str?.length > n ? str.substr(0, n - 1) + "..." : str;
+  }
 
   return (
     <div className="latest-posts">
       <div className="latest_posts_wrapper">
         <div className="latest_header">
-          <h3>Latest Posts...</h3>
+          <h3>פוסטים אחרונים</h3>
           <hr/>
         </div>
         <div className="latest_posts_posts">
@@ -36,9 +39,10 @@ export const LatestPosts = ({posts}) => {
             posts.map((post, i) => {
               while(i < 3) {
                 return (
-                  <Card id="card" className={`${classes.root}`}>
+                  <Card id="card" className={`${classes.root}`} key={post.id}>
                     <CardActionArea>
                       <CardMedia
+                        id="image"
                         className={classes.media}
                         image={post.image}
                         title="Contemplative Reptile"
@@ -48,14 +52,12 @@ export const LatestPosts = ({posts}) => {
                           {post.title}
                         </Typography>
                         <Typography variant="body2" color="textSecondary" component="p">
-                          {post.description}
+                          {truncate(post.description, 30)}
                         </Typography>
                       </CardContent>
                     </CardActionArea>
                     <CardActions>
-                    <Button variant="contained" color="secondary">
-                      קראי עוד
-                    </Button>
+                   
                     </CardActions>
                   </Card>
                 )

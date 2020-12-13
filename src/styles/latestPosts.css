@@ -3,9 +3,8 @@
   margin: 25px auto;
 }
 
-
 .latest_header {
-  text-align: left;
+  text-align: right;
   font-size: 32px;
   font-weight: lighter;
   padding: 20px 0px;
@@ -21,14 +20,51 @@
   flex-direction: column;
 }
 
+.latest_posts_posts::-webkit-scrollbar
+{
+  width: 3px;
+  background-color: #F5F5F5;
+}
+
+.latest_posts_posts::-webkit-scrollbar-thumb
+{
+  background-color: #000000;
+  border: 1px solid #555555;
+}
+
+
 .latest_posts_posts {
   display: flex;
   flex-direction: row;
-  width: 70%;
-  margin: 0 auto;
-  justify-content: space-between;
+  justify-content: center;
+  direction: rtl;
+  padding: 20px;
+  overflow-x: scroll;
+
+}
+
+@media screen and (max-width: 1000px) {
+  .latest_posts_posts {
+    justify-content: right;
+  }
 }
 
 .latest_posts_wrapper #card {
   text-align: right;
+  margin: 0 10px;
+  min-width: 300px;
+  max-width: 300px;
+  max-height: 420px;
+}
+
+#card #btn {
+  position: relative;
+}
+
+#card {
+  transition: transform .2s; /* Animation */
+}
+
+#card:hover #image {
+  transform: scale(1.1);
 }

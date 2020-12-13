@@ -10,6 +10,15 @@ export const setPosts = () => {
   })
 }
 
+export const editPost = async (post) => {
+  db.collection("posts").doc(post.id).set({
+    catagory: post.catagory,
+    title: post.title,
+    description: post.description,
+    content: post.content
+  })
+}
+
 
 export const deletePost = async (post) => {
   db.collection("posts").doc(post.id).delete().then(function() {

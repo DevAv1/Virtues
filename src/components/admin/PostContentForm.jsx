@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux';
 import { getPostsAction, createPostAction } from '../../store/actions/posts.actions';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import ReactHtmlParser from 'react-html-parser';
 import { storage } from '../../firebase';
 import {
   Button,
@@ -15,7 +14,7 @@ import {
   FormControl
 } from '@material-ui/core'
 
-export const PostContentForm = () => {
+export const PostContentForm = ({editPost, setEditPost}) => {
   const [ image, setImage ] = useState(null);
   const [value, setValue] = useState('');
   const [ readyToPost, setReadyToPost ] = useState(false)
@@ -60,7 +59,10 @@ export const PostContentForm = () => {
         })
       }
     )
-    
+  }
+
+  const handleSaveChanges = () => {
+    // need to continue coding from here
   }
 
   const resetInputs = () => {
@@ -81,18 +83,15 @@ export const PostContentForm = () => {
     setReadyToPost(true)
   }
     
-  
-
   return (
     <div className="form-container">
         <FormControl required className="post-form">
           <InputLabel htmlFor="atagory-select">CATAGORY</InputLabel>
             <Select
-              style={{width: "100%"}}
               labelId="demo-simple-select-label"
               id="catagory-select"
               name="catagory"
-              value={newPost.catagory}
+              value={editPost ? editPost.catagory : newPost.catagory}
               onChange={(e) => {setNewPost({...newPost, catagory: e.target.value})}}
               >
               <MenuItem value='beauty'>BEAUTY</MenuItem>
@@ -110,8 +109,8 @@ export const PostContentForm = () => {
               type="text"
               variant="outlined"
               fullWidth
-              value={newPost.title}
-              onChange={(e) => setNewPost({...newPost, title: e.target.value })}
+              value={editPost ? editPost.title : newPost.title}
+              onChange={editPost ? (e) => setEditPost({...editPost, title: e.target.value}) :(e) => setNewPost({...newPost, title: e.target.value })}
             />
             <TextField
               className="input"
@@ -123,7 +122,7 @@ export const PostContentForm = () => {
               label="DESCRIPTION"
               type="text"
               fullWidth
-              value={newPost.description}
+              value={editPost ? editPost.description : newPost.description}
               onChange={(e) => setNewPost({...newPost, description: e.target.value })}
             />
             <TextField
@@ -137,11 +136,11 @@ export const PostContentForm = () => {
               fullWidth
               onChange={(e) => setImage(e.target.files[0])}
             />
-            <ReactQuill className="editor-quill" theme="snow" onChange={setValue} value={value} direction='rtl' style={{height:"300px"}}/>
+            <ReactQuill className="editor-quill" theme="snow" onChange={setValue} value={editPost ? editPost.content : value} style={{height:"300px"}} />
             <div className="btns-group">
               <Button className="btn" variant="contained" color="secondary" onClick={saveEditorContent}>Save</Button>
-              <Button className="btn" onClick={handleSubmit} variant="contained" color="secondary" type="submit" disabled={!readyToPost}>
-                SUBMIT POST
+              <Button className="btn" onClick={editPost ? handleSaveChanges : handleSubmit} variant="contained" color="secondary" type="submit" disabled={!readyToPost}>
+                {editPost ? "Save Changes" : "Submit Post"}
               </Button>
               <Button className="btn" variant="contained" color="secondary" onClick={resetInputs}>
                 Cencel

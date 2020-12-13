@@ -1,6 +1,8 @@
 .posts {
   margin-top: 50px;
   min-height: 100vh;
+  font-family: 'Rubik', sans-serif;
+
 }
 
 .posts .posts-wrapper {
@@ -20,7 +22,6 @@
 }
 
 html {
-  font-family: system-ui;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -48,7 +49,7 @@ header {
     opacity: 1;
   }
 }
-@media (min-width: 30em) {
+@media (min-width: 40em) {
   .band {
     grid-template-columns: 1fr 1fr;
   }

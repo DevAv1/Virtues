@@ -1,11 +1,13 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../styles/posts.css'
+import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPostsAction } from '../store/actions/posts.actions';
 import { getPostsSelector } from '../store/selectors';
-import { LinearProgress } from '@material-ui/core';
+import { Backdrop, CircularProgress } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { LatestPosts } from '../components/LatestPosts'
+
 export const Posts = () => {
   const dispatch = useDispatch(); 
   const posts = useSelector(getPostsSelector)
@@ -13,6 +15,19 @@ export const Posts = () => {
   useEffect(() => {
     dispatch(getPostsAction());
   }, [])
+
+  const truncate = (str, n) => {
+    return str?.length > n ? str.substr(0, n - 1) + "..." : str;
+  }
+  
+  const useStyles = makeStyles((theme) => ({
+    backdrop: {
+      zIndex: theme.zIndex.drawer + 1,
+      color: '#fff',
+    },
+  }));
+
+  const classes = useStyles();
 
   return (
     <div className="posts">
@@ -29,7 +44,7 @@ export const Posts = () => {
                     <article>
                       <h1>{item.title}</h1>
                       <h3>{item.catagory}</h3>
-                      <p>{item.description}</p>
+                      <p>{truncate(item?.description, 150)}</p>
                       <span>{item.timestamp.toDate().toString()}</span>
                     </article>
                   </Link>
@@ -39,10 +54,9 @@ export const Posts = () => {
           }
           </div>
           :
-          <div className="progression">
-            <LinearProgress color="secondary" className="progress-bar"/>
-            <h1>Loading feed please wait...</h1>
-          </div>  
+          <Backdrop className={classes.backdrop} open>
+            <CircularProgress color="inherit" />
+          </Backdrop>
       }
       <LatestPosts posts={posts}/>
 

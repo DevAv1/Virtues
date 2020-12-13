@@ -25,3 +25,8 @@
 .btns-group .btn {
   margin-right: 20px;
 }
+
+.ql-editor{
+  text-align: right!important;
+  direction: rtl;
+}
