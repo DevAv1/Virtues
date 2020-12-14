@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../../styles/postContentForm.css';
 import { useDispatch } from 'react-redux';
-import { getPostsAction, createPostAction } from '../../store/actions/posts.actions';
+import { getPostsAction, createPostAction, setPostAction } from '../../store/actions/posts.actions';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { storage } from '../../firebase';
@@ -14,9 +14,10 @@ import {
   FormControl
 } from '@material-ui/core'
 
-export const PostContentForm = ({editPost, setEditPost}) => {
+export const PostContentForm = ({ editPost, setEditPost }) => {
   const [ image, setImage ] = useState(null);
-  const [value, setValue] = useState('');
+  const [ value, setValue ] = useState('');
+  const [ editValue, setEditValue ] = useState('');
   const [ readyToPost, setReadyToPost ] = useState(false)
   const [ newPost, setNewPost ] = useState({
     imageURL: '',
@@ -26,7 +27,14 @@ export const PostContentForm = ({editPost, setEditPost}) => {
     content: value
   });
 
+  useEffect(() => {
+    console.log(editPost.id);
+  }, [editPost])
+
   const dispatch = useDispatch();
+  useEffect(() => {
+    setEditValue(editPost.content)
+  }, [editPost])
 
   useEffect(() => {
     dispatch(getPostsAction())
@@ -34,35 +42,30 @@ export const PostContentForm = ({editPost, setEditPost}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const uploadTask = storage.ref(`images/${image.name}`).put(image);
-    uploadTask.on(
-      'state_changed', (snapshot) => {
-        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        console.log('Upload is ' + progress + '% done');
-      }, (error) => {
-        console.log(error)
-      },
-      () => {
-        uploadTask.snapshot.ref.getDownloadURL().then((url) => {
-          let uploadedPost = Object.assign(newPost, {imageURL:url})
-          setNewPost(uploadedPost);
-          dispatch(createPostAction(uploadedPost))
-          console.log('File available at','image const', url);
-          setNewPost({
-            imageURL: '',
-            catagory: '',
-            title: '',
-            description: '',
-            content: ''
+    if(editPost.title.length === 0) {
+      const uploadTask = storage.ref(`images/${image.name}`).put(image);
+      uploadTask.on(
+        'state_changed', (snapshot) => {
+          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log('Upload is ' + progress + '% done');
+        }, (error) => {
+          console.log(error)
+        },
+        () => {
+          uploadTask.snapshot.ref.getDownloadURL().then((url) => {
+            let uploadedPost = Object.assign(newPost, {imageURL:url})
+            setNewPost(uploadedPost);
+            dispatch(createPostAction(uploadedPost))
+            console.log('File available at','image const', url);
+            resetInputs();
+            setValue('')
+            setReadyToPost(false)
           })
-          setValue('')
-        })
-      }
-    )
-  }
-
-  const handleSaveChanges = () => {
-    // need to continue coding from here
+        }
+      )
+    } else {
+      dispatch(setPostAction(editPost))
+    }
   }
 
   const resetInputs = () => {
@@ -73,14 +76,30 @@ export const PostContentForm = ({editPost, setEditPost}) => {
       description: '',
       content: ''
     })
+    setEditPost({
+      id: '',
+      imageURL: '',
+      catagory: '',
+      title: '',
+      description: '',
+      content: ''
+    })
   }
 
   const saveEditorContent = () => {
-    setNewPost({
-      ...newPost,
-      content: value
-    })
-    setReadyToPost(true)
+    if(editPost.title.length === 0) {
+      setNewPost({
+        ...newPost,
+        content: value
+      })
+      setReadyToPost(true)
+    } else {
+      setEditPost({
+        ...editPost,
+        content: editValue
+      })
+      setReadyToPost(true)
+    }
   }
     
   return (
@@ -91,7 +110,7 @@ export const PostContentForm = ({editPost, setEditPost}) => {
               labelId="demo-simple-select-label"
               id="catagory-select"
               name="catagory"
-              value={editPost ? editPost.catagory : newPost.catagory}
+              value={editPost.catagory.length > 0 ? editPost.catagory : newPost.catagory}
               onChange={(e) => {setNewPost({...newPost, catagory: e.target.value})}}
               >
               <MenuItem value='beauty'>BEAUTY</MenuItem>
@@ -109,8 +128,8 @@ export const PostContentForm = ({editPost, setEditPost}) => {
               type="text"
               variant="outlined"
               fullWidth
-              value={editPost ? editPost.title : newPost.title}
-              onChange={editPost ? (e) => setEditPost({...editPost, title: e.target.value}) :(e) => setNewPost({...newPost, title: e.target.value })}
+              value={editPost.title ? editPost.title : newPost.title}
+              onChange={editPost.title ? (e) => setEditPost({...editPost, title: e.target.value}) :(e) => setNewPost({...newPost, title: e.target.value })}
             />
             <TextField
               className="input"
@@ -122,8 +141,8 @@ export const PostContentForm = ({editPost, setEditPost}) => {
               label="DESCRIPTION"
               type="text"
               fullWidth
-              value={editPost ? editPost.description : newPost.description}
-              onChange={(e) => setNewPost({...newPost, description: e.target.value })}
+              value={editPost.description ? editPost.description : newPost.description}
+              onChange={editPost.description ? (e) => setEditPost({...editPost, description: e.target.value}) : (e) => setNewPost({...newPost, description: e.target.value })}
             />
             <TextField
               required
@@ -136,17 +155,16 @@ export const PostContentForm = ({editPost, setEditPost}) => {
               fullWidth
               onChange={(e) => setImage(e.target.files[0])}
             />
-            <ReactQuill className="editor-quill" theme="snow" onChange={setValue} value={editPost ? editPost.content : value} style={{height:"300px"}} />
+            <ReactQuill className="editor-quill" theme="snow" onChange={editPost.content ? setEditValue : setValue} value={editPost.content ? editValue : value} style={{height:"400px"}} />
             <div className="btns-group">
               <Button className="btn" variant="contained" color="secondary" onClick={saveEditorContent}>Save</Button>
-              <Button className="btn" onClick={editPost ? handleSaveChanges : handleSubmit} variant="contained" color="secondary" type="submit" disabled={!readyToPost}>
-                {editPost ? "Save Changes" : "Submit Post"}
+              <Button className="btn" onClick={handleSubmit} variant="contained" color="secondary" type="submit" disabled={!readyToPost}>
+                Submit Post
               </Button>
               <Button className="btn" variant="contained" color="secondary" onClick={resetInputs}>
                 Cencel
               </Button>
             </div>
-           
         </FormControl>
     </div>
   )

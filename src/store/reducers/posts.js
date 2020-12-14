@@ -1,4 +1,4 @@
-import { GET_POSTS, CREATE_POST, DELETE_POST } from '../actions/actions.types';
+import { GET_POSTS, CREATE_POST, DELETE_POST, SET_POST } from '../actions/actions.types';
 
 const initialState = {
   items: []
@@ -24,6 +24,11 @@ export const posts = (state = initialState, action) => {
       return {
         ...state,
         items: filteredPosts
+      }
+
+    case SET_POST :
+      return {
+        ...state
       }
     
     default:

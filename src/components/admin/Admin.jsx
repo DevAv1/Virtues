@@ -19,7 +19,6 @@ const Admin = () => {
     description: '',
     content: ''
   });
-
   const [ editPost, setEditPost ] = useState({
     imageURL: '',
     catagory: '',
@@ -37,6 +36,7 @@ const Admin = () => {
 
   const handleEdit = (post) => {
     setEditPost({
+      id: post.id,
       imageURL: post.image,
       catagory: post.catagory,
       title: post.title,
@@ -62,8 +62,6 @@ const Admin = () => {
         setShowPosts={setShowPosts} 
         handleClose={handleClose} 
         handleClick={handleClick} 
-        anchorEl={anchorEl} 
-        setAnchorEl={setAnchorEl}
       />
       {showPosts &&
         <AdminPosts 

@@ -44,7 +44,7 @@ export const deletePostAction = (post) => {
         id: id
       })
     } catch(err) {
-      console.err(err)
+      console.error(err)
     }
   }
 }
@@ -52,13 +52,13 @@ export const deletePostAction = (post) => {
 export const setPostAction = (post) => {
   return async (dispatch) => {
     try {
-      const id = await editPost(post);
+      const editedPost = await editPost(post);
       dispatch({
         type: SET_POST,
-        id: id
+        post: editedPost
       })
     } catch(err) {
-      console.err(err)
+      console.error(err)
     }
   }
 }

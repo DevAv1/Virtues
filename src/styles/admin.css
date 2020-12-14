@@ -1,5 +1,7 @@
 .admin {
   min-height: 100vh;
+  width: 80%;
+  margin: 0 auto;
 }
 .admin_header {
   display: flex;

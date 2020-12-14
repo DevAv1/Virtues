@@ -3,7 +3,7 @@ import { Button, Tooltip } from '@material-ui/core'
 import AddIcon from '@material-ui/icons/Add';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 
-export const AdminMenu = ({ setShowCreatePost, showCreatePost, showPosts, setShowPosts, handleClose, anchorEl, handleClick }) => {
+export const AdminMenu = ({ setShowCreatePost, showCreatePost, showPosts, setShowPosts }) => {
 
   return (
     <div>

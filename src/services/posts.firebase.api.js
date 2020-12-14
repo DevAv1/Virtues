@@ -9,31 +9,36 @@ export const setPosts = () => {
     })
   })
 }
-
 export const editPost = async (post) => {
-  db.collection("posts").doc(post.id).set({
+  let response = await db.collection("posts").doc(post.id).update({
     catagory: post.catagory,
     title: post.title,
     description: post.description,
-    content: post.content
+    content: post.content,
+    image: post.imageURL
+  }).then(() => {
+    console.log("update - successed");
+    return post;
+  }).catch((error)=>{
+    console.log(error);
+    return null;
   })
+  
+  return response;
 }
-
 
 export const deletePost = async (post) => {
   db.collection("posts").doc(post.id).delete().then(function() {
     console.log("Document successfully deleted!");
-}).catch(function(error) {
+  }).catch(function(error) {
+      console.error("Error removing document: ", error);
+  });db.collection("cities").doc("DC").delete().then(function() {
+    console.log("Document successfully deleted!");
+  }).catch(function(error) {
     console.error("Error removing document: ", error);
-});db.collection("cities").doc("DC").delete().then(function() {
-  console.log("Document successfully deleted!");
-}).catch(function(error) {
-  console.error("Error removing document: ", error);
-});
-return post.id
-}
-
-
+  });
+  return post.id
+  }
 
 export const createPost = async ({catagory, title, description, content, imageURL}) => {
     const res = await db.collection('posts').add({
