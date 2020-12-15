@@ -37,7 +37,7 @@ const Header = () => {
               <div className="menu-line"></div>
               <div className="menu-line"></div>
               <div className="menu-line"></div>
-            </div>
+            </div> 
         </div>
     </div>
   )

@@ -8,7 +8,6 @@ import { PostContentForm } from './PostContentForm';
 import { AdminMenu } from './AdminMenu';
 
 const Admin = () => {
-  const [anchorEl, setAnchorEl] = useState(null);
   const [ showCreatePost, setShowCreatePost ] = useState(true);
   const [ showPosts, setShowPosts ] = useState(true);
 
@@ -17,16 +16,10 @@ const Admin = () => {
     catagory: '',
     title: '',
     description: '',
-    content: '' 
+    content: '',
+    image: '',
+    timestamp: null
   })
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
 
   const dispatch = useDispatch();
   const allPosts = useSelector(getPostsSelector);
@@ -41,7 +34,9 @@ const Admin = () => {
       catagory: post.catagory,
       title: post.title,
       description: post.description,
-      content: post.content
+      content: post.content,
+      image: post.image,
+      timestamp: post.timestamp
     }) 
   }
 
@@ -52,8 +47,6 @@ const Admin = () => {
         showCreatePost={showCreatePost} 
         showPosts={showPosts} 
         setShowPosts={setShowPosts} 
-        handleClose={handleClose} 
-        handleClick={handleClick} 
       />
       {showPosts &&
         <AdminPosts 

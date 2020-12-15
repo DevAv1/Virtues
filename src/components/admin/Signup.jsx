@@ -26,23 +26,6 @@ const Signup = ({ history }) => {
     }
   }
 
-  /*
-
-  const handleSignup = useCallback(async event => {
-    event.preventDefault();
-    // const { email, password } = event.target.elements; 
-    try {
-      debugger;
-      await firebaseApp
-      .auth()
-      .createUserWithEmailAndPassword(email, password);
-      history.push("/");
-    } catch(error) {
-      alert(error);
-    }
-  }, [history])
-  */
-
   return (
     <div className="signup">
       <Card className="form-card">
@@ -55,7 +38,6 @@ const Signup = ({ history }) => {
           <Form.Group id="password">
             <Form.Label>Password</Form.Label>
             <Form.Control type="password" value={password} onChange={(e) => {
-              debugger; 
               setPassword(e.target.value)}} required/>
           </Form.Group>
           <Form.Group id="password-confirm">

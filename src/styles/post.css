@@ -11,8 +11,9 @@
 .post .post-header h1 {
   display: flex;
   justify-content: center;
-  margin: 0 auto;
+  margin: 40px auto;
   letter-spacing: 1.2em;
+  font-weight: bold;
 }
 
 @media screen and (max-width: 1000px) {
@@ -55,6 +56,7 @@
   font-size: 18px;
   /* line-height: 1.5em; */
   font-weight: lighter;
+  text-align: right;
 }
 
 @media screen and (max-width: 1000px) {

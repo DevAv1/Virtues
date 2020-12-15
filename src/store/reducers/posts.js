@@ -27,14 +27,15 @@ export const posts = (state = initialState, action) => {
       }
 
     case SET_POST :
+      let updatedPost = action.post;
+      let updatedItems = state.items.map(item => {
+        if(item.id === updatedPost.id) {
+          return updatedPost
+        } else return item
+      })
       return {
         ...state,
-        items: [
-          ...state.items,
-          {
-            [action.post.id]: action.post
-          }
-        ]
+        items: updatedItems
       }
     
     default:

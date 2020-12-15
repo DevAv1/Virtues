@@ -1,13 +1,11 @@
-import React, { useState, useCallback, useContext } from 'react'
-import { withRouter, Redirect, Link } from 'react-router-dom';
+import React, { useState, useContext } from 'react'
+import { withRouter, Redirect } from 'react-router-dom';
 import '../../styles/login.css';
 import { AuthContext } from '../../Auth';
 import firebaseApp from '../../firebase';
 import {
-  Form,
-  Button,
-  Card
-} from 'react-bootstrap'
+  Button
+} from '@material-ui/core'
 const Login = ({ history }) => {
 
   const [ email, setEmail ] = useState('');
@@ -31,22 +29,18 @@ const Login = ({ history }) => {
   }
 
   return (
-    <div className="login container">
-      <Card className="form-card">
-        <h2 className="text-center mb-4"><b>Login</b></h2>
-        <Form>
-          <Form.Group id="email">
-            <Form.Label>Email</Form.Label>
-            <Form.Control onChange={(e) => setEmail(e.target.value)} type="email" value={email} required/>
-          </Form.Group>
-          <Form.Group id="password">
-            <Form.Label>Password</Form.Label>
-            <Form.Control onChange={(e) => setPassword(e.target.value)} type="password" value={password} required/>
-          </Form.Group>
-         
-          <Button onClick={handleLogin} type="submit" className="w-100">Sign In</Button>
-        </Form>
-      </Card>
+    <div className="login">
+      <div class="container">
+        <div class="top"></div>
+        <div class="bottom"></div>
+        <div class="center">
+          <h2>Please Sign In</h2>
+          <input onChange={(e) => setEmail(e.target.value)} type="email" value={email} required placeholder="email"/>
+          <input onChange={(e) => setPassword(e.target.value)} type="password" value={password} required placeholder="password"/>
+          <h2>&nbsp;</h2>
+          <Button variant="secondary" className="submit-btn" onClick={handleLogin} type="submit">Log In</Button>
+        </div>
+      </div>
   </div>
   )
 }
