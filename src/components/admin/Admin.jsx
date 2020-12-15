@@ -9,23 +9,24 @@ import { AdminMenu } from './AdminMenu';
 
 const Admin = () => {
   const [anchorEl, setAnchorEl] = useState(null);
-  const [ open, setOpen ] = useState(false);
   const [ showCreatePost, setShowCreatePost ] = useState(true);
   const [ showPosts, setShowPosts ] = useState(true);
-  const [ newPost, setNewPost ] = useState({
-    imageURL: '',
-    catagory: '',
-    title: '',
-    description: '',
-    content: ''
-  });
+
   const [ editPost, setEditPost ] = useState({
-    imageURL: '',
+    id:'',
     catagory: '',
     title: '',
     description: '',
-    content: ''
+    content: '' 
   })
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
 
   const dispatch = useDispatch();
   const allPosts = useSelector(getPostsSelector);
@@ -37,21 +38,12 @@ const Admin = () => {
   const handleEdit = (post) => {
     setEditPost({
       id: post.id,
-      imageURL: post.image,
       catagory: post.catagory,
       title: post.title,
       description: post.description,
       content: post.content
     }) 
   }
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
 
   return (
     <div className="admin">
@@ -73,10 +65,6 @@ const Admin = () => {
       <div className="post-create-area">
       {showCreatePost &&
         <PostContentForm
-          open={open}
-          setOpen={setOpen}
-          newPost={newPost} 
-          setNewPost={setNewPost}
           editPost={editPost}
           setEditPost={setEditPost}
         />

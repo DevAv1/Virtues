@@ -25,7 +25,7 @@ const Header = () => {
             </div>
             <div className="topBotomBordersOut">
               <ul>
-                <li><Link to="/admin">ADMIN</Link></li>
+                {/* <li><Link to="/admin">ADMIN</Link></li> */}
                 <li><Link to="/">contact</Link></li>
                 <li><Link to="/">life</Link></li>
                 <li><Link to="/">food</Link></li>

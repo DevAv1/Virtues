@@ -52,13 +52,14 @@ export const deletePostAction = (post) => {
 export const setPostAction = (post) => {
   return async (dispatch) => {
     try {
-      const editedPost = await editPost(post);
+      await editPost(post);
       dispatch({
         type: SET_POST,
-        post: editedPost
+        post: post
       })
     } catch(err) {
       console.error(err)
+      console.log('action went wrong!')
     }
   }
 }

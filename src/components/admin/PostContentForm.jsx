@@ -27,10 +27,6 @@ export const PostContentForm = ({ editPost, setEditPost }) => {
     content: value
   });
 
-  useEffect(() => {
-    console.log(editPost.id);
-  }, [editPost])
-
   const dispatch = useDispatch();
   useEffect(() => {
     setEditValue(editPost.content)
@@ -65,6 +61,9 @@ export const PostContentForm = ({ editPost, setEditPost }) => {
       )
     } else {
       dispatch(setPostAction(editPost))
+      resetInputs();
+      setEditPost('')
+      setReadyToPost(false)
     }
   }
 
@@ -110,7 +109,7 @@ export const PostContentForm = ({ editPost, setEditPost }) => {
               labelId="demo-simple-select-label"
               id="catagory-select"
               name="catagory"
-              value={editPost.catagory.length > 0 ? editPost.catagory : newPost.catagory}
+              value={editPost.catagory ? editPost.catagory : newPost.catagory}
               onChange={(e) => {setNewPost({...newPost, catagory: e.target.value})}}
               >
               <MenuItem value='beauty'>BEAUTY</MenuItem>
@@ -159,7 +158,7 @@ export const PostContentForm = ({ editPost, setEditPost }) => {
             <div className="btns-group">
               <Button className="btn" variant="contained" color="secondary" onClick={saveEditorContent}>Save</Button>
               <Button className="btn" onClick={handleSubmit} variant="contained" color="secondary" type="submit" disabled={!readyToPost}>
-                Submit Post
+                {`${editPost.title ? "Submit Changes" : "Submit Post"}`}
               </Button>
               <Button className="btn" variant="contained" color="secondary" onClick={resetInputs}>
                 Cencel

@@ -11,5 +11,4 @@ import { reducers } from '../store/reducers';
 export const store = createStore(
   reducers(),
   composeWithDevTools(compose(applyMiddleware(thunk)))
- 
 );

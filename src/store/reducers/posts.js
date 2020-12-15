@@ -28,7 +28,13 @@ export const posts = (state = initialState, action) => {
 
     case SET_POST :
       return {
-        ...state
+        ...state,
+        items: [
+          ...state.items,
+          {
+            [action.post.id]: action.post
+          }
+        ]
       }
     
     default:

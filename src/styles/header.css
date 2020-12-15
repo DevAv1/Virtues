@@ -35,12 +35,6 @@
   padding: 10px;
 }
 
-
-.header-navbar .logo i:hover {
-    cursor: pointer;
-    opacity: 1;
-}
-
 .header-navbar .logo span {
     font-size: 40px;
     font-weight: bold;

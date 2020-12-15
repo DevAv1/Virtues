@@ -1,4 +1,4 @@
-import db from '../firebase';
+import { db } from '../firebase';
 import firebase from 'firebase';
 
 export const setPosts = () => {
@@ -10,21 +10,12 @@ export const setPosts = () => {
   })
 }
 export const editPost = async (post) => {
-  let response = await db.collection("posts").doc(post.id).update({
+  await db.collection("posts").doc(post.id).update({
     catagory: post.catagory,
     title: post.title,
     description: post.description,
     content: post.content,
-    image: post.imageURL
-  }).then(() => {
-    console.log("update - successed");
-    return post;
-  }).catch((error)=>{
-    console.log(error);
-    return null;
   })
-  
-  return response;
 }
 
 export const deletePost = async (post) => {

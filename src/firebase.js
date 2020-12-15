@@ -1,18 +1,19 @@
 import firebase from 'firebase';
+import 'firebase/auth'
 
 const firebaseApp = firebase.initializeApp ({
-  apiKey: "AIzaSyAtF-Q9p3KHbU7KT2cVNgeEySIUaL9lSeg",
-  authDomain: "virtues-4408e.firebaseapp.com",
-  databaseURL: "https://virtues-4408e.firebaseio.com",
-  projectId: "virtues-4408e",
-  storageBucket: "virtues-4408e.appspot.com",
-  messagingSenderId: "116461017915",
-  appId: "1:116461017915:web:5ac0d569ed410fe1c7b51e",
-  measurementId: "G-SB9BDNSKNM"
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_DOMAIN,
+  databaseURL: process.env.REACT_APP_FIREBASE_DATABASE,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_API_ID,
+  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID
 });
 
-const db = firebaseApp.firestore();
+export const db = firebaseApp.firestore();
 export const storage = firebase.storage();
+export const auth = firebaseApp.auth();
 
-
-export default db;
+export default firebaseApp;
