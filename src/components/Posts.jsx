@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import '../styles/posts.css'
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from 'react-redux';
@@ -36,14 +36,11 @@ export const Posts = () => {
          { posts.map((item, index) => {
               return (
                 <div className={`${!index && "item-1" }`} key={item.title} data-aos="fade-right">
-                  <Link to={{
-                    pathname:"/post",
-                    post: item
-                  }} params={item} className="card">
+                  <Link to={`/post/${item.id}`} params={item} className="card">
                     <div className="thumb" style={{backgroundImage: `url(${item.image})`}}></div>
                     <article>
                       <h1>{item.title}</h1>
-                      <h3>{item.catagory}</h3>
+                      <h5>{item.catagory}</h5>
                       <p>{truncate(item?.description, 150)}</p>
                       <span>{item.timestamp.toDate().toString()}</span>
                     </article>

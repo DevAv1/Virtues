@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../../styles/postContentForm.css';
 import { useDispatch } from 'react-redux';
 import { getPostsAction, createPostAction, setPostAction } from '../../store/actions/posts.actions';
-import ReactQuill from 'react-quill';
+import ReactQuill, { Quill, Mixin, Toolbar } from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { storage } from '../../firebase';
 import {
@@ -35,6 +35,28 @@ export const PostContentForm = ({ editPost, setEditPost }) => {
   useEffect(() => {
     dispatch(getPostsAction())
   },[])  
+
+  const QuillModules = {
+    toolbar: [
+      [{ 'header': [1, 2, false] }],
+      ['bold', 'italic', 'underline','strike', 'blockquote'],
+      [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
+      ['link', 'image'],
+      ['clean'],
+      [{ 'direction': 'rtl'}],
+      ['image', 'code-block'],
+      ['align']
+    ],
+  }
+  const formats = [
+    'header',
+    'bold', 'italic', 'underline', 'strike', 'blockquote',
+    'list', 'bullet', 'indent',
+    'link', 'image'
+  ]
+  
+
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -154,7 +176,7 @@ export const PostContentForm = ({ editPost, setEditPost }) => {
               fullWidth
               onChange={(e) => setImage(e.target.files[0])}
             />
-            <ReactQuill className="editor-quill" theme="snow" onChange={editPost.content ? setEditValue : setValue} value={editPost.content ? editValue : value} style={{height:"400px"}} />
+            <ReactQuill className="editor-quill" modules={QuillModules} formats={formats} placeholder="התחילי לכתוב..."  theme="snow" onChange={editPost.content ? setEditValue : setValue} value={editPost.content ? editValue : value} style={{height:"400px"}} />
             <div className="btns-group">
               <Button className="btn" variant="contained" color="secondary" onClick={saveEditorContent}>Save</Button>
               <Button className="btn" onClick={handleSubmit} variant="contained" color="secondary" type="submit" disabled={!readyToPost}>

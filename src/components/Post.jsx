@@ -1,20 +1,33 @@
 import React, { useEffect, useState} from 'react'
 import '../styles/post.css';
 import { useLocation } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import { LinearProgress } from '@material-ui/core';
 import ReactHtmlParser from 'react-html-parser';
+import { getPostsSelector } from '../store/selectors';
+import { getPostsAction } from '../store/actions/posts.actions';
 
-export const Post = () => {
-  const location = useLocation();
+export const Post = ({ match }) => {
   const [ currentPost, setCurrentPost] = useState({})
+  const posts = useSelector(getPostsSelector);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    setCurrentPost(location.post)
+    dispatch(getPostsAction());
   }, [])
+
+  useEffect(() => {
+    posts.map(post => {
+      if(post.id === match.params.post) {
+        setCurrentPost(post)
+      } else return;
+    })
+  })
+
 
   return (
     <div className="post">
-      { currentPost ?
+      { currentPost && 
         <div className="post-wrapper">
           <div className="post-header">
            <h1>{currentPost.catagory}</h1>
@@ -28,8 +41,7 @@ export const Post = () => {
             <p>{ReactHtmlParser(currentPost.content)}</p>
           </div>
         </div>
-        :
-        <LinearProgress />
+       
       }
     
     </div>

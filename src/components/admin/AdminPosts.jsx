@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../../styles/adminPosts.css';
-import { deletePostAction, setPostAction } from '../../store/actions/posts.actions';
+import { deletePostAction } from '../../store/actions/posts.actions';
 import { useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -8,9 +8,14 @@ import EditIcon from '@material-ui/icons/Edit';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
+import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
+import {Button} from '@material-ui/core';
 
 export const AdminPosts = ({ allPosts, handleEdit }) => {
+  const [open, setOpen] = useState(false);
+  const [ msg, setMsg ] = useState('')
 
   const dispatch = useDispatch();
 
@@ -39,11 +44,46 @@ export const AdminPosts = ({ allPosts, handleEdit }) => {
   const classes = useStyles();
 
   const handleDelete = (post) => {
+    setMsg('Post Deleted!')
     dispatch(deletePostAction(post))
+    handleClick()
   }
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+  
   
   return (
     <div className="admin-posts">
+      <Snackbar
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'left',
+        }}
+        open={open}
+        autoHideDuration={6000}
+        onClose={handleClose}
+        message={msg}
+        action={
+          <React.Fragment>
+            <Button color="secondary" size="small" onClick={handleClose}>
+              UNDO
+            </Button>
+            <IconButton size="small" aria-label="close" color="inherit" onClick={handleClose}>
+              <CloseIcon fontSize="small" />
+            </IconButton>
+          </React.Fragment>
+        }
+      />
       <div className="beauty_posts">
         <h1>BEAUTY POSTS...</h1>
         <div className={classes.root}>
@@ -56,7 +96,7 @@ export const AdminPosts = ({ allPosts, handleEdit }) => {
                     <GridListTileBar
                       title={item.title}
                       actionIcon={
-                        <IconButton aria-label={`star ${item.title}`}>
+                        <IconButton aria-label={`star ${item.title}`} id="actions-btns">
                           <DeleteIcon onClick={() => handleDelete(item)} className={classes.title} />
                           <EditIcon onClick={() => handleEdit(item)} className={classes.title} />
                         </IconButton>
