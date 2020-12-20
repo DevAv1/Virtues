@@ -1,5 +1,7 @@
 import React from 'react';
 import '../styles/latestPosts.css';
+import InstagramEmbed from 'react-instagram-embed';
+
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Card,
@@ -32,6 +34,21 @@ export const LatestPosts = ({posts}) => {
       <div className="latest_posts_wrapper">
         <div className="latest_header">
           <h3>פוסטים אחרונים</h3>
+          <div className="insta">
+        <InstagramEmbed
+          url='https://instagr.am/p/Zw9o4/'
+          clientAccessToken='123|456'
+          maxWidth={320}
+          hideCaption={false}
+          containerTagName='div'
+          protocol=''
+          injectScript
+          onLoading={() => {}}
+          onSuccess={() => {}}
+          onAfterRender={() => {}}
+          onFailure={() => {}}
+        />
+        </div>
           <hr/>
         </div>
         <div className="latest_posts_posts">
@@ -65,6 +82,7 @@ export const LatestPosts = ({posts}) => {
             })
           }
         </div>
+      
       </div>
     </div>
   )
