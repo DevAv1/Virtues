@@ -3,7 +3,7 @@ import '../styles/header.css'
 import { Link } from "react-router-dom";
 import CloseIcon from '@material-ui/icons/Close';
 import InstagramIcon from '@material-ui/icons/Instagram';
-
+import CoverImage from '../../src/assets/backgrounds/cover_two.JPG';
 const Header = () => {
   const [ showMobileMenu, setShowMobileMenu ] = useState(false)
   const [ show, setShow ] = useState(false)
@@ -25,6 +25,13 @@ const Header = () => {
 
   return (
     <div className='header' >
+      <div className="cover_image">
+        <img src={CoverImage} alt=""/>
+        <div className="cover_text">
+          <h1>Healthy Life  .  .  .</h1>
+          <p>By Limor Sror</p>
+        </div>
+      </div>
         <div className={`header-navbar ${show && "header-navbar__light"}`} >
             <div className="logo">
               <Link to="/"><span className="logo-name">VIRTUES</span></Link>
@@ -32,7 +39,7 @@ const Header = () => {
             <div className="topBotomBordersOut">
               <ul>
                 {/* <li><Link to="/admin">ADMIN</Link></li> */}
-                <li><Link to="/">contact</Link></li>
+                 <InstagramIcon/>
                 <li><Link to="/category/life">life</Link></li>
                 <li><Link to="/category/food">food</Link></li>
                 <li><Link to="/category/body and soul">body & soul</Link></li>
@@ -55,7 +62,7 @@ const Header = () => {
                   <li><Link to="/">Contact</Link></li>
                 </ul>
                 <div className="social">
-                  <a href="" target="_blank">
+                  <a href="https://www.instagram.com/limorsror/" target="_blank">
                    <InstagramIcon id="inst"/>
                   </a>
                 </div>

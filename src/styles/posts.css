@@ -144,7 +144,7 @@ header {
 .virtues-siders-wrapper {
   display: flex;
   justify-content: space-between;
-  position: absolute;
+  position: fixed;
   width: 100%;
   top: 50%;
   z-index: 0;
@@ -167,6 +167,9 @@ header {
   font-size: 40px;
   font-weight: bold;
   opacity: 0.4;
+  font-family: 'Bad Script', cursive;
+  color: rgb(184, 133, 142);
+
 }
 
 

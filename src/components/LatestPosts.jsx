@@ -78,9 +78,11 @@ export const LatestPosts = ({posts}) => {
               })
             }
           </div>
-            <div id="instagram-output">
-
-            </div>
+          <div className="instagram_feed">
+            <h1>עקבו אחריי</h1>
+            <span>@limorsror</span>
+            <div id="instagram-output"></div>
+          </div>
         </div>
       </div>
   )
