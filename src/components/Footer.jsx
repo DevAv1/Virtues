@@ -10,21 +10,18 @@ const Footer = () => {
               </div>
               <div className="catagories">
                 <ul>
-                  <li><a href="#">contact</a></li>
-                  <li><a href="#">about</a></li>
-                  <li><a href="#">Active</a></li>
-                  <li><a href="#">Mindfulness</a></li>
-                  <li><a href="#">Beauty</a></li>
+                  <li><a href="#">beauty</a></li>
+                  <li><a href="#">body & soul</a></li>
+                  <li><a href="#">food</a></li>
+                  <li><a href="#">life</a></li>
                 </ul>
               </div>
               <div className="social">
 
               </div>
-
               <div className="rights">
-                <p>Developed by @AviRevah</p>
+                <p>Developed by &copy;AviRevah</p>
               </div>
-
             </div>
         </div>
     )

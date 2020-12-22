@@ -93,7 +93,7 @@ header {
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-          flex-direction: column;
+  flex-direction: column;
   min-height: 100%;
   position: relative;
   top: 0;
@@ -108,20 +108,26 @@ header {
 .card article {
   padding: 20px;
   -webkit-box-flex: 1;
-          flex: 1;
+  flex: 1;
   display: -webkit-box;
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-          flex-direction: column;
+  flex-direction: column;
   -webkit-box-pack: justify;
-          justify-content: space-between;
-          text-align: right;
+  justify-content: space-between;
+  text-align: right;
 }
 .card h1 {
   font-size: 20px;
   margin: 0;
   color: #333;
+}
+
+.card h5 {
+  text-transform: uppercase;
+  opacity: 0.8;
+  font-weight: lighter;
 }
 .card p {
   -webkit-box-flex: 1;
@@ -164,19 +170,6 @@ header {
   z-index: 0;
 }
 
-@media screen and (max-width: 1000px) {
-  .virtues-siders-wrapper {
-    display: none;
-  }
-
-  .parallax_one {
-    display: none;
-  }
-
-  .parallax_two {
-    display: none;
-  }
-}
 
 .virtues-siders-wrapper .virtues-siders {
   transform: rotate(270deg);
@@ -194,20 +187,6 @@ header {
 
 }
 
-.parallax_one {
-  position: relative;
-  width: 100%;
-  height: 200px;
-  background-image: url('../assets/backgrounds/cover_one.JPG');
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  opacity: 0.6;
-}
-
-
-
 .parallax_two {
   position: relative;
   width: 100%;
@@ -219,8 +198,43 @@ header {
   background-size: cover;
   opacity: 0.6;
   margin: 100px 0;
+  -webkit-box-shadow: inset 10px 2px 108px -8px rgba(255,255,255,1);
+-moz-box-shadow: inset 10px 2px 108px -8px rgba(255,255,255,1);
+box-shadow: inset 10px 2px 108px -8px rgba(255,255,255,1);
 }
 
+.wrapper {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.wrapper h1 {
+  font-family: 'Megrim', cursive;
+  font-size: 200px;
+  color: white;
+  font-weight: bolder;
+}
+
+@media screen and (max-width: 1024px) {
+  .virtues-siders-wrapper {
+    display: none;
+  }
+
+  .parallax_two {
+    background-attachment: scroll;
+    height: 500px;
+    filter:saturate(70%);
+  }
+
+  .wrapper h1 {
+    font-family: 'Megrim', cursive;
+    font-size: 100px;
+    color: white;
+    font-weight: bolder;
+  }
+}
 
 
 

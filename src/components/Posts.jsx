@@ -58,7 +58,12 @@ export const Posts = () => {
             <CircularProgress color="inherit" />
           </Backdrop>
       }
-      <div className="parallax_two"></div>  
+      <div className="parallax_two">
+        <div className="wrapper">
+          <h1>Virtues</h1>
+        </div>
+      </div>  
+     
       <LatestPosts posts={posts}/>
 
       <div className="virtues-siders-wrapper">

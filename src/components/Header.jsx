@@ -35,11 +35,12 @@ const Header = () => {
         <div className={`header-navbar ${show && "header-navbar__light"}`} >
             <div className="logo">
               <Link to="/"><span className="logo-name">VIRTUES</span></Link>
+              <a href="https://www.instagram.com/limorsror/" target="_blank"><InstagramIcon id="logo_inst"/></a>
+              
             </div>
             <div className="topBotomBordersOut">
               <ul>
                 {/* <li><Link to="/admin">ADMIN</Link></li> */}
-                 <InstagramIcon/>
                 <li><Link to="/category/life">life</Link></li>
                 <li><Link to="/category/food">food</Link></li>
                 <li><Link to="/category/body and soul">body & soul</Link></li>

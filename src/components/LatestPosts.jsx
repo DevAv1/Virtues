@@ -34,7 +34,7 @@ export const LatestPosts = ({posts}) => {
       target: "instagram-output",
       limit: 4,
         resolution: 'low_resolution',
-        accessToken: 'IGQVJVUTFsZAE9xVFo3dnlIRVVlSWg1OGo2cVVENWNOMVBEY25xTDY5TUc1cG5TQVh5cllKd3dta1M4RnROREU1ZAFBmb0JCazM5Q2d0cUdJbEJsX3dBODhaczYwZA2w1emlFSGJGWndkVTFhRk9JaHpqRgZDZD'
+        accessToken: 'IGQVJXUFg0WjdGc00wR3ZAFbTRIT1J2SlJFSDhtMWR3MXRJVF9jSUZAZAdUNlcEJKY1V3ZA1pldmNjOVpLS2RFbEp4c2hyemxhVkt1RE10ckFLZAXduaGZAmU0VyUnBtUXNDT0ZANQ01ZAZAjFIODZAwc1FqYm91dAZDZD'
     });
 
     setTimeout(()=>{

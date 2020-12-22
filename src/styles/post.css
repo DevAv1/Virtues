@@ -8,7 +8,6 @@
 .post .post-header {
   display: flex;
   justify-content: center;
-  text-transform: uppercase;
 }
 
 .post .post-header h1 {
@@ -16,7 +15,10 @@
   justify-content: center;
   margin: 40px auto;
   letter-spacing: 1.2em;
-  font-weight: bold;
+  text-transform: uppercase;
+  font-weight: 300;
+  font-size: 62px;
+
 }
 
 .post .post-content p {
