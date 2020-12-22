@@ -38,7 +38,7 @@
   justify-content: right;
   direction: rtl;
   overflow-x: scroll;
-
+  padding: 50px 0;
 }
 
 @media screen and (max-width: 1000px) {
@@ -97,19 +97,49 @@
 .latest_posts_wrapper #card {
   text-align: right;
   margin: 0 10px;
-  min-width: 300px;
+  min-width: 350px;
   max-width: 300px;
-  max-height: 420px;
+  height: 440px;
+  transition: 0.2s all;
 }
 
+#card:hover {
+  min-width: 370px;
+  max-width: 370px;
+
+}
+
+.card_content #typo{
+  font-size: 28px;
+}
+
+#card:hover .card_content {
+  transform: translateY(-50%);
+  background: white;
+}
+#card #image {
+  height: 300px;
+}
 #card #btn {
   position: relative;
+}
+
+#card #arrow {
+  position: absolute;
+  left: 20px;
+  font-size: 40px;
+  transition: 0.2s all;
+}
+
+#card:hover #arrow {
+  font-size: 42px;
 }
 
 #card {
   transition: transform .2s; /* Animation */
 }
 
-#card:hover #image {
-  transform: scale(1.1);
+
+.makeStyles-media-12 {
+  height: 265px !important;
 }

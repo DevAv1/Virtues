@@ -21,12 +21,24 @@
 
 .post .post-content p {
   font-size: 18px;
+  width: 70%;
+  margin: 0 auto;
+
 }
+
+.post .post-content img {
+  width: 100%;
+}
+
 
 @media screen and (max-width: 1000px) {
   .post .post-header h1 {
     letter-spacing: none;
     font-size: 20px;
+  }
+
+  .post .post-content p {
+    width: 100%;
   }
 }
 .post .post-image {
@@ -67,7 +79,3 @@
   text-align: right;
 }
 
-@media screen and (max-width: 1000px) {
-  .post .post-content p {
-  }
-}

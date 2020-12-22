@@ -31,6 +31,8 @@ export const Posts = () => {
 
   return (
     <div className="posts">
+      <h3 id="sub-text">VIRTUES הוא המקום שלך ושלי. זו קהילה שיצרתי עבורנו מתוך שאיפה לתת לכולנו את ההזדמנות לחוות רגע אחד לעצמנו. זה המקום בו הכל אפשרי, הכל מקובל, ללא שיפוטיות וללא מאמץ.</h3>
+      <hr style={{width:"80%", margin: "30px auto"}}/>
       {posts.length > 0 ?
         <div className="band">
          { posts.map((item, index) => {
@@ -50,21 +52,22 @@ export const Posts = () => {
             })
           }
           </div>
+          
           :
           <Backdrop className={classes.backdrop} open>
             <CircularProgress color="inherit" />
           </Backdrop>
       }
+      <div className="parallax_two"></div>  
       <LatestPosts posts={posts}/>
 
       <div className="virtues-siders-wrapper">
         <div className="virtues-siders">
           <h1>VIRTUES</h1>
         </div>
-        <div className="virtues-siders">
-          <h1>VIRTUES</h1>
-        </div>
-      </div>      
+      </div>
+
+      {/* <div className="parallax_one"></div>   */}
   </div>
   )
 }

@@ -3,7 +3,8 @@ import '../styles/header.css'
 import { Link } from "react-router-dom";
 import CloseIcon from '@material-ui/icons/Close';
 import InstagramIcon from '@material-ui/icons/Instagram';
-import CoverImage from '../../src/assets/backgrounds/cover_two.JPG';
+
+
 const Header = () => {
   const [ showMobileMenu, setShowMobileMenu ] = useState(false)
   const [ show, setShow ] = useState(false)
@@ -26,9 +27,8 @@ const Header = () => {
   return (
     <div className='header' >
       <div className="cover_image">
-        <img src={CoverImage} alt=""/>
         <div className="cover_text">
-          <h1>Healthy Life  .  .  .</h1>
+          <h1>Healthy Life...</h1>
           <p>By Limor Sror</p>
         </div>
       </div>

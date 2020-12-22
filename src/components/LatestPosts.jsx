@@ -10,6 +10,7 @@ import {
   CardMedia,
   Typography,
 } from '@material-ui/core';
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
 export const LatestPosts = ({posts}) => {
 
@@ -61,13 +62,14 @@ export const LatestPosts = ({posts}) => {
                           image={post.image}
                           title="Contemplative Reptile"
                         />
-                        <CardContent>
-                          <Typography gutterBottom variant="h5" component="h2">
+                        <CardContent className="card_content">
+                          <Typography id="typo" gutterBottom variant="h5" component="h2">
                             {post.title}
                           </Typography>
                           <Typography variant="body2" color="textSecondary" component="p">
                             {truncate(post.description, 30)}
                           </Typography>
+                          <ArrowBackIosIcon id="arrow"/>
                         </CardContent>
                       </CardActionArea>
                       <CardActions>
