@@ -89,6 +89,7 @@
   font-weight: bold;
   font-family: 'Megrim', cursive;
   text-transform: capitalize;
+  opacity: 0.8;
 }
 
 #logo_inst {
@@ -253,7 +254,7 @@ div.topBotomBordersOut a:hover:before, div.topBotomBordersOut a:hover:after
   justify-content: space-between;
   align-items: center;
   background-color: #fceaec;
-  transform: translateX(100%);
+  transform: translateY(-100%);
   transition: transform 0.3s ease-in;
 }
 
@@ -269,7 +270,7 @@ div.topBotomBordersOut a:hover:before, div.topBotomBordersOut a:hover:after
   align-items: center;
   background-color: #fceaec;
   padding: 40px 0px;
-  transform: translateX(0%);
+  transform: translateY(0%);
   transition: transform 0.3s ease-in;
 }
 
@@ -277,7 +278,6 @@ div.topBotomBordersOut a:hover:before, div.topBotomBordersOut a:hover:after
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 40%;
 }
 
 .mobile_menu_open ul li > a {

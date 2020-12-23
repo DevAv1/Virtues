@@ -28,11 +28,10 @@ export const LatestPosts = ({posts}) => {
     return str?.length > n ? str.substr(0, n - 1) + "..." : str;
   }
 
-
-    var userFeed = new window.Instafeed({
+    const userFeed = new window.Instafeed({
       get: 'user',
       target: "instagram-output",
-      limit: 4,
+      limit: 10,
         resolution: 'low_resolution',
         accessToken: 'IGQVJXUFg0WjdGc00wR3ZAFbTRIT1J2SlJFSDhtMWR3MXRJVF9jSUZAZAdUNlcEJKY1V3ZA1pldmNjOVpLS2RFbEp4c2hyemxhVkt1RE10ckFLZAXduaGZAmU0VyUnBtUXNDT0ZANQ01ZAZAjFIODZAwc1FqYm91dAZDZD'
     });

@@ -44,7 +44,7 @@ export const Posts = () => {
                       <h1>{item.title}</h1>
                       <h5>{item.catagory}</h5>
                       <p>{truncate(item?.description, 150)}</p>
-                      <span>{item.timestamp.toDate().toString()}</span>
+                      {/* <span>{item.timestamp.toDate().toString()}</span> */}
                     </article>
                   </Link>
                 </div>
@@ -52,7 +52,6 @@ export const Posts = () => {
             })
           }
           </div>
-          
           :
           <Backdrop className={classes.backdrop} open>
             <CircularProgress color="inherit" />

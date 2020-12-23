@@ -1,8 +1,6 @@
 import React, { useEffect, useState} from 'react'
 import '../styles/post.css';
-import { useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { LinearProgress } from '@material-ui/core';
 import ReactHtmlParser from 'react-html-parser';
 import { getPostsSelector } from '../store/selectors';
 import { getPostsAction } from '../store/actions/posts.actions';

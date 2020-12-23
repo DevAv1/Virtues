@@ -56,11 +56,10 @@ const Header = () => {
               <nav className={`${!showMobileMenu ? "mobile_menu" : "mobile_menu_open"}`}>
                 <CloseIcon id="close_menu_icon" onClick={handleToggleMenu}/>
                 <ul>
-                  <li><Link to="/">Beauty</Link></li>
-                  <li><Link to="/">Body & Soul</Link></li>
-                  <li><Link to="/">Food</Link></li>
-                  <li><Link to="/">Life</Link></li>
-                  <li><Link to="/">Contact</Link></li>
+                  <li onClick={handleToggleMenu}><Link to="/category/beauty">Beauty</Link></li>
+                  <li onClick={handleToggleMenu}><Link to="/category/body and soul">Body & Soul</Link></li>
+                  <li onClick={handleToggleMenu}><Link to="/category/food">Food</Link></li>
+                  <li onClick={handleToggleMenu}><Link to="/category/life">Life</Link></li>
                 </ul>
                 <div className="social">
                   <a href="https://www.instagram.com/limorsror/" target="_blank">
