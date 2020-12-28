@@ -11,11 +11,44 @@ import GridListTileBar from '@material-ui/core/GridListTileBar';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
-import {Button} from '@material-ui/core';
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+} from '@material-ui/core';
 
+const DeleteAlertDialog = ({ showDltAlert, handleClickClose, handleDelete, dltPost}) => {
+  return (
+    <Dialog
+      open={showDltAlert}
+      keepMounted
+      onClose={handleClickClose}
+      aria-labelledby="alert-dialog-slide-title"
+      aria-describedby="alert-dialog-slide-description"
+    >
+    <DialogContent>
+      <DialogContentText id="alert-dialog-slide-description">
+        {`Are you sure you want to delete ${dltPost.title} post?`}
+      </DialogContentText>
+    </DialogContent>
+    <DialogActions>
+      <Button onClick={handleClickClose} color="primary">
+        Disagree
+      </Button>
+      <Button onClick={() => handleDelete(dltPost)} autoFocus color="primary">
+        Agree
+      </Button>
+    </DialogActions>
+    </Dialog>
+  )
+}
 export const AdminPosts = ({ allPosts, handleEdit }) => {
   const [open, setOpen] = useState(false);
-  const [ msg, setMsg ] = useState('')
+  const [ showDltAlert, setShowDltAlert ] = useState(false);
+  const [ msg, setMsg ] = useState('');
+  const [ dltPost, setDltPost ] = useState({})
 
   const dispatch = useDispatch();
 
@@ -47,6 +80,8 @@ export const AdminPosts = ({ allPosts, handleEdit }) => {
     setMsg('Post Deleted!')
     dispatch(deletePostAction(post))
     handleClick()
+    setShowDltAlert(false)
+    setDltPost({})
   }
 
   const handleClick = () => {
@@ -61,6 +96,15 @@ export const AdminPosts = ({ allPosts, handleEdit }) => {
     setOpen(false);
   };
   
+  const handleClickOpen = (item) => {
+    setDltPost(item)
+    setShowDltAlert(true);
+  };
+
+  const handleClickClose = () => {
+    setShowDltAlert(false);
+    setDltPost({})
+  };
   
   return (
     <div className="admin-posts">
@@ -75,14 +119,18 @@ export const AdminPosts = ({ allPosts, handleEdit }) => {
         message={msg}
         action={
           <React.Fragment>
-            <Button color="secondary" size="small" onClick={handleClose}>
-              UNDO
-            </Button>
             <IconButton size="small" aria-label="close" color="inherit" onClick={handleClose}>
               <CloseIcon fontSize="small" />
             </IconButton>
           </React.Fragment>
         }
+      />
+      <DeleteAlertDialog 
+        handleClickClose={handleClickClose}
+        handleClickOpen={handleClickOpen}
+        dltPost={dltPost}
+        showDltAlert={showDltAlert}
+        handleDelete={handleDelete}
       />
       <div className="beauty_posts">
         <h1>BEAUTY POSTS...</h1>
@@ -97,7 +145,7 @@ export const AdminPosts = ({ allPosts, handleEdit }) => {
                       title={item.title}
                       actionIcon={
                         <IconButton aria-label={`star ${item.title}`} id="actions-btns">
-                          <DeleteIcon onClick={() => handleDelete(item)} className={classes.title} />
+                          <DeleteIcon onClick={() => handleClickOpen(item)} className={classes.title} style={{marginRight: "10px"}}/>
                           <EditIcon onClick={() => handleEdit(item)} className={classes.title} />
                         </IconButton>
                       }
@@ -123,7 +171,7 @@ export const AdminPosts = ({ allPosts, handleEdit }) => {
                       title={item.title}
                       actionIcon={
                         <IconButton aria-label={`star ${item.title}`}>
-                          <DeleteIcon onClick={() => handleDelete(item)} className={classes.title} />
+                          <DeleteIcon onClick={() => handleClickOpen(item)} className={classes.title} style={{marginRight: "10px"}}/>
                           <EditIcon onClick={() => handleEdit(item)} className={classes.title} />
                         </IconButton>
                       }
@@ -150,7 +198,7 @@ export const AdminPosts = ({ allPosts, handleEdit }) => {
                       title={item.title}
                       actionIcon={
                         <IconButton aria-label={`star ${item.title}`}>
-                          <DeleteIcon onClick={() => handleDelete(item)} className={classes.title} />
+                          <DeleteIcon onClick={() => handleClickOpen(item)} className={classes.title} style={{marginRight: "10px"}}/>
                           <EditIcon onClick={() => handleEdit(item)} className={classes.title} />
                         </IconButton>
                       }
@@ -176,7 +224,7 @@ export const AdminPosts = ({ allPosts, handleEdit }) => {
                       title={item.title}
                       actionIcon={
                         <IconButton aria-label={`star ${item.title}`}>
-                          <DeleteIcon onClick={() => handleDelete(item)} className={classes.title} />
+                          <DeleteIcon onClick={() => handleClickOpen(item)} className={classes.title} style={{marginRight: "10px"}}/>
                           <EditIcon onClick={() => handleEdit(item)} className={classes.title} />
                         </IconButton>
                       }
@@ -188,8 +236,7 @@ export const AdminPosts = ({ allPosts, handleEdit }) => {
             )}
           </GridList>
         </div>
-      </div>
-     
+      </div>        
     </div>
   )
 }

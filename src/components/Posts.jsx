@@ -7,6 +7,7 @@ import { getPostsSelector } from '../store/selectors';
 import { Backdrop, CircularProgress } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { LatestPosts } from '../components/LatestPosts'
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
 export const Posts = () => {
   const dispatch = useDispatch(); 
@@ -31,7 +32,7 @@ export const Posts = () => {
 
   return (
     <div className="posts">
-      <h3 id="sub-text">VIRTUES הוא המקום שלך ושלי. זו קהילה שיצרתי עבורנו מתוך שאיפה לתת לכולנו את ההזדמנות לחוות רגע אחד לעצמנו. זה המקום בו הכל אפשרי, הכל מקובל, ללא שיפוטיות וללא מאמץ.</h3>
+      <h3 id="sub-text">כאן נדבר תאכלס, איך בעזרת צעדים פשוטים נהפוך את מרוץ החיים האינסופי בו אנו נמצאים למסע מהנה ונעים יותר.</h3>
       <hr style={{width:"80%", margin: "30px auto"}}/>
       {posts.length > 0 ?
         <div className="band">
@@ -44,6 +45,9 @@ export const Posts = () => {
                       <h1>{item.title}</h1>
                       <h5>{item.catagory}</h5>
                       <p>{truncate(item?.description, 150)}</p>
+                      <div className="readmore">
+                        <ArrowBackIosIcon id="card_arrow"/><label>קראי עוד</label>
+                      </div>
                       {/* <span>{item.timestamp.toDate().toString()}</span> */}
                     </article>
                   </Link>
@@ -67,7 +71,7 @@ export const Posts = () => {
 
       <div className="virtues-siders-wrapper">
         <div className="virtues-siders">
-          <h1>VIRTUES</h1>
+          <h1>Happier, Healthier</h1>
         </div>
       </div>
 

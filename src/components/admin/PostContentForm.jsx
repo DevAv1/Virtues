@@ -124,7 +124,7 @@ export const PostContentForm = ({ editPost, setEditPost }) => {
       setReadyToPost(true)
     }
   }
-    
+  
   return (
     <div className="form-container">
         <FormControl required className="post-form">

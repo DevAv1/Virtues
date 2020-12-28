@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import '../styles/latestPosts.css';
-
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Card,
@@ -11,9 +10,9 @@ import {
   Typography,
 } from '@material-ui/core';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import InstagramIcon from '@material-ui/icons/Instagram';
 
 export const LatestPosts = ({posts}) => {
-
   const useStyles = makeStyles({
     root: {
       maxWidth: 345,
@@ -79,9 +78,10 @@ export const LatestPosts = ({posts}) => {
               })
             }
           </div>
-          <div className="instagram_feed">
-            <h1>עקבו אחריי</h1>
-            <span>@limorsror</span>
+          <div className="instagram_feed" >
+            <h1>FOLLOW ME</h1>
+            <a id="hashtag" href="https://www.instagram.com/limorsror/" target="_blank"><InstagramIcon />limorsror </a>
+            
             <div id="instagram-output"></div>
           </div>
         </div>
