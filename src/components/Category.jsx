@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getPostsSelector } from '../store/selectors';
 import { getPostsAction } from '../store/actions/posts.actions';
+import { LatestPosts } from '../components/LatestPosts';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
 export const Category = ({ match }) => {
@@ -28,9 +29,9 @@ export const Category = ({ match }) => {
 
   return (
     <div className="category">
-      <h1 id="category_title">{match.params.categoryName}</h1>
-      <hr id="title_line"/>
       <div className="category_wrapper">
+        <h1 id="category_title">{match.params.categoryName}</h1>
+        <hr id="title_line"/>
         
           {
             posts.map((post) => {
@@ -47,8 +48,9 @@ export const Category = ({ match }) => {
               }
             })
           }
-         
       </div>
+      <LatestPosts posts={posts}/>
+
     </div>
   )
 }

@@ -1,6 +1,11 @@
 .latest-posts {
-  width: 70%;
+  width: 100%;
   margin: 25px auto;
+}
+
+.latest_posts_wrapper {
+  width: 80%;
+  margin: 0 auto;
 }
 
 .latest_header h3 {
@@ -12,7 +17,8 @@
 }
 
 .latest_header > hr {
-  margin: 20px 0px;
+  width: 80%;
+  float: right;
 }
 
 .latest_posts_wrapper {
@@ -110,13 +116,19 @@
 .latest_posts_wrapper #card {
   text-align: right;
   margin: 0 10px;
-  min-width: 350px;
-  min-height: 400px;
+  width: 400px;
   transition: 0.2s all;
 }
 
+@media screen and (max-width: 1200px) {
+  .latest_posts_wrapper #card {
+    width: 240px;
+    height: 450px;
+  }
+}
+
 .card_content #typo{
-  font-size: 28px;
+  font-size: 20px;
 }
 
 #card:hover .card_content {

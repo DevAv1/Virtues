@@ -237,9 +237,7 @@ html {
   }
 
   .parallax_two {
-    background-attachment: scroll;
-    height: 500px;
-    filter:saturate(70%);
+    display: none;
   }
 
   .wrapper h1 {

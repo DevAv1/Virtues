@@ -68,7 +68,6 @@
   align-items: center;
   transition-timing-function: ease-in;
   transition: all 0.5s;
-  border-bottom: 1px rgba(0, 0, 0, 0.164) solid;
 }
 
 .header-navbar__light {

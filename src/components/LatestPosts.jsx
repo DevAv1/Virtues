@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import '../styles/latestPosts.css';
 import { makeStyles } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom';
 import {
   Card,
   CardActionArea,
@@ -52,27 +53,30 @@ export const LatestPosts = ({posts}) => {
               posts.map((post, i) => {
                 while(i < 3) {
                   return (
-                    <Card id="card" className={`${classes.root}`} key={post.id}>
-                      <CardActionArea>
-                        <CardMedia
-                          id="image"
-                          className={classes.media}
-                          image={post.image}
-                          title="Contemplative Reptile"
-                        />
-                        <CardContent className="card_content">
-                          <Typography id="typo" gutterBottom variant="h5" component="h2">
-                            {post.title}
-                          </Typography>
-                          <Typography variant="body2" color="textSecondary" component="p">
-                            {truncate(post.description, 30)}
-                          </Typography>
-                          <ArrowBackIosIcon id="arrow"/>
-                        </CardContent>
-                      </CardActionArea>
-                      <CardActions>
-                      </CardActions>
-                    </Card>
+                    <Link to={`/post/${post.id}`} params={post}>
+                      <Card id="card" className={`${classes.root}`} key={post.id}>
+                        <CardActionArea>
+                          <CardMedia
+                            id="image"
+                            className={classes.media}
+                            image={post.image}
+                            title="Contemplative Reptile"
+                          />
+                          <CardContent className="card_content">
+                            <Typography id="typo" gutterBottom variant="h5" component="h2">
+                              {post.title}
+                            </Typography>
+                            <Typography variant="body2" color="textSecondary" component="p">
+                              {truncate(post.description, 30)}
+                            </Typography>
+                            {/* <ArrowBackIosIcon id="arrow"/> */}
+                          </CardContent>
+                        </CardActionArea>
+                        <CardActions>
+                        </CardActions>
+                      </Card>
+                    </Link>
+                    
                   )
                 }
               })
