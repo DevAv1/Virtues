@@ -12,7 +12,7 @@ const Footer = () => {
               <div className="catagories">
                 <ul>
                   <li><Link to="/category/beauty">beauty</Link></li>
-                  <li><Link to="/category/body" href="#">body & soul</Link></li>
+                  <li><Link to="/category/body and soul" href="#">body & soul</Link></li>
                   <li><Link to="/category/food" href="#">food</Link></li>
                   <li><Link to="/category/life" href="#">life</Link></li>
                 </ul>

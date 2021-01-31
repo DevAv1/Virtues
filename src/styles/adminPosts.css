@@ -13,3 +13,7 @@
 .makeStyles-root-25 {
   justify-content: end !important;
 }
+
+.MuiGridListTile-root {
+  min-width: 400px !important;
+}

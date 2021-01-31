@@ -35,10 +35,10 @@ const DeleteAlertDialog = ({ showDltAlert, handleClickClose, handleDelete, dltPo
     </DialogContent>
     <DialogActions>
       <Button onClick={handleClickClose} color="primary">
-        Disagree
+        NO
       </Button>
       <Button onClick={() => handleDelete(dltPost)} autoFocus color="primary">
-        Agree
+        YES
       </Button>
     </DialogActions>
     </Dialog>

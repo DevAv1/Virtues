@@ -4,9 +4,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import ReactHtmlParser from 'react-html-parser';
 import { getPostsSelector } from '../store/selectors';
 import { getPostsAction } from '../store/actions/posts.actions';
+import { LatestPosts } from '../components/LatestPosts';
 
 export const Post = ({ match }) => {
-  const [ currentPost, setCurrentPost] = useState({})
+  const [ currentPost, setCurrentPost] = useState({});
   const posts = useSelector(getPostsSelector);
   const dispatch = useDispatch();
 
@@ -21,7 +22,6 @@ export const Post = ({ match }) => {
       } else return;
     })
   })
-
 
   return (
     <div className="post">
@@ -41,7 +41,7 @@ export const Post = ({ match }) => {
         </div>
        
       }
-    
+    <LatestPosts posts={posts}/>
     </div>
   )
 }

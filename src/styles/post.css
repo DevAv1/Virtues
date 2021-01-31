@@ -17,25 +17,26 @@
   letter-spacing: 1.2em;
   text-transform: uppercase;
   font-weight: 300;
-  font-size: 48px;
-
+  font-size: 52px;
 }
 
 .post .post-content p {
-  font-size: 18px;
-  width: 70%;
+  width: 100%;
   margin: 0 auto;
-
 }
 
 .post .post-content img {
   width: 100%;
 }
 
+.post .post-wrapper {
+  margin-bottom: 50px;
+}
+
 
 @media screen and (max-width: 1100px) {
   .post .post-header h1 {
-    font-size: 18px;
+    font-size: 15px;
     letter-spacing: 1em;
     font-weight: 400;
   }
@@ -46,13 +47,15 @@
 }
 .post .post-image {
   width: 100%;
+  height: auto;
   display: flex;
   justify-content: center;
 }
 
 .post-image > img {
   width: 100%;
-  height: 100%;
+  max-height: 800px;
+  object-fit: cover ;
 }
 
 .post .post-content {
@@ -73,12 +76,13 @@
   margin: 0 auto;
   padding: 20px 0px;
   text-align: right;
+  font-size: 28px;
 }
 
 .post .post-content p {
-  font-size: 18px;
+  font-size: 22px;
   /* line-height: 1.5em; */
-  font-weight: lighter;
+  font-weight: 500;
   text-align: right;
 }
 

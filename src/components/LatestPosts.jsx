@@ -13,7 +13,7 @@ import {
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import InstagramIcon from '@material-ui/icons/Instagram';
 
-export const LatestPosts = ({posts}) => {
+export const LatestPosts = ({ posts }) => {
   const useStyles = makeStyles({
     root: {
       maxWidth: 345,
@@ -51,7 +51,7 @@ export const LatestPosts = ({posts}) => {
           <div className="latest_posts_posts">
             {posts && 
               posts.map((post, i) => {
-                while(i < 3) {
+                while(i < 4) {
                   return (
                     <Link to={`/post/${post.id}`} params={post}>
                       <Card id="card" className={`${classes.root}`} key={post.id}>

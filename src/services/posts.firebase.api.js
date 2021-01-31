@@ -3,7 +3,9 @@ import firebase from 'firebase';
 
 export const setPosts = () => {
   return new Promise((resolve, reject) => {
-    db.collection('posts').onSnapshot(snapshot => {
+    db.collection('posts')
+    .orderBy('timestamp', 'desc')
+    .onSnapshot(snapshot => {
     const posts = snapshot.docs.map(doc => ({...doc.data(), id:doc.id}))
     resolve(posts);
     })

@@ -18,7 +18,7 @@
   margin: 0 auto;
   direction: rtl;
   font-weight: lighter;
-  font-size: 26px;
+  font-size: 30px;
   padding: 40px 20px;
   font-family: 'Assistant', sans-serif;
 
@@ -68,6 +68,12 @@ html {
   animation: bandAnimation 1s ease-in-out;
 }
 
+@media screen and (max-width: 800px) {
+  .band {
+    max-width: 95%;
+  }
+}
+
 .band h1 {
   transition: 0.2s ease-in-out;
 }
@@ -110,7 +116,7 @@ html {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   flex-direction: column;
-  min-height: auto;
+  height: 100%;
   position: relative;
   top: 0;
   -webkit-transition: all 0.1s ease-in;
@@ -184,13 +190,13 @@ html {
   position: fixed;
   width: 100%;
   top: 50%;
+  transform: translate(-4%);
   z-index: 0;
 }
 
 
 .virtues-siders-wrapper .virtues-siders {
   transform: rotate(270deg);
-  top: 50%;
   height: 100%;
 
 }
@@ -198,7 +204,7 @@ html {
 .virtues-siders-wrapper .virtues-siders h1 {
   font-size: 30px;
   font-weight: bold;
-  opacity: 0.4;
+  opacity: 0.2;
   font-family: 'Bad Script', cursive;
   color: black;
 

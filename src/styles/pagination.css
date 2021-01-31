@@ -1,0 +1,25 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.pagination li {
+  cursor: pointer;
+  list-style: none;
+  background: none;
+  margin: 0px 4px;
+}
+
+.pagination li:hover {
+  background: #b39a9a;
+}
+
+.pagination li:hover span {
+  color: white;
+}
+
+.pagination li span {
+  margin: 0px 12px;
+  font-size: 22px;
+}
